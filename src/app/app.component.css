@@ -1,5 +1,20 @@
+.wrapper {
+    display: flex;
+    flex-flow : row wrap;
+}
 
+app-header {
+    flex: 1 100%;
+}
 
+.halfScreen  {
+    flex: 1 50%;
+}
+
+@media all and (max-width: 600px) {
+    .wrapper { flex-flow : column nowrap; }
+    .wrapper > * {flex: 1 100% }
+}
 
 
 

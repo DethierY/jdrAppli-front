@@ -5,11 +5,15 @@ import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { CharacterListComponent } from './character-list/character-list.component';
+import { SortOptionsComponent } from './sort-options/sort-options.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    CharacterListComponent,
+    SortOptionsComponent
   ],
   imports: [
     BrowserModule,
