@@ -1,0 +1,14 @@
+.containerHeader {
+    display : flex;
+    align-items: center;
+    justify-content : space-between;
+}
+
+.containerHeaderRight {
+    display: flex;
+    align-items : center;
+}
+
+.formHeader {
+    padding-right : 1em;
+}
