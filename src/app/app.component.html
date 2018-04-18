@@ -1,19 +1,20 @@
 <div class = 'container'>
     <mat-toolbar>
-        <button mat-icon-button
-            (click) = 'snav.toggle()'>
-            <mat-icon>menu</mat-icon>
-        </button>
         <button mat-icon-button>
                 <mat-icon>home</mat-icon>
         </button>
         <span class = 'spacer'></span>
-        <form >
+        <form fxShow='true' fxHide.xs='true'>
             <input matInput value = 'Identifiant'>
             <input matInput value = 'Mot de passe'>
             <button mat-raised-button>Connexion</button>
-            </form>
-        <button mat-raised-button>Register</button>
+            <button mat-raised-button>Register</button>
+        </form>
+        <button mat-icon-button
+            fxShow='true' fxHide.gt-xs="true"
+            (click) = 'snav.toggle()'>
+            <mat-icon>menu</mat-icon>
+        </button>
     </mat-toolbar>
     <mat-sidenav-container class = 'sidenav-container'>
         <mat-sidenav #snav class = 'sidenav'>

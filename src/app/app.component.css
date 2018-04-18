@@ -20,6 +20,10 @@
     flex: 1 1 auto;
 }
 
+/* @media screen and (max-width: 600px) {
+    .menuButton { visibility: visible; }
+    .toolbar { visibility: hidden; }
+} */
 
 .wrapper {
     display: flex;
