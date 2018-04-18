@@ -1,14 +1,21 @@
 .containerHeader {
     display : flex;
     align-items: center;
+    flex-flow: row wrap;
     justify-content : space-between;
+}
+
+.elementHeader {
+    flex: 1 50%;
 }
 
 .containerHeaderRight {
     display: flex;
+    justify-content : space-around;
     align-items : center;
 }
 
-.formHeader {
-    padding-right : 1em;
+@media all and (max-width: 600px) {
+    .containerHeader { flex-flow : column nowrap; }
+    .elementHeader > * {flex: 1 100% }
 }

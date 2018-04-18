@@ -1,3 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav-container {
+    flex: 1;
+}
+
+.sidenav {
+    width: 200px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+
 .wrapper {
     display: flex;
     flex-flow : row wrap;
@@ -15,6 +38,18 @@ app-header {
     .wrapper { flex-flow : column nowrap; }
     .wrapper > * {flex: 1 100% }
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+
 
 
 

@@ -1,5 +1,28 @@
-<div class = 'wrapper'>
-    <app-header></app-header>
-    <app-character-list class = 'left halfScreen'></app-character-list>
-    <app-sort-options class = 'right halfScreen'></app-sort-options>
+<div class = 'container'>
+    <mat-toolbar>
+        <button mat-icon-button
+            (click) = 'snav.toggle()'>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button>
+                <mat-icon>home</mat-icon>
+        </button>
+        <span class = 'spacer'></span>
+        <form >
+            <input matInput value = 'Identifiant'>
+            <input matInput value = 'Mot de passe'>
+            <button mat-raised-button>Connexion</button>
+            </form>
+        <button mat-raised-button>Register</button>
+    </mat-toolbar>
+    <mat-sidenav-container class = 'sidenav-container'>
+        <mat-sidenav #snav class = 'sidenav'>
+        
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class = 'content'>
+
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>
