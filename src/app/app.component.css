@@ -10,6 +10,7 @@
 
 .sidenav-container {
     flex: 1;
+    flex-direction: column;
 }
 
 .sidenav {
@@ -20,38 +21,21 @@
     flex: 1 1 auto;
 }
 
-/* @media screen and (max-width: 600px) {
-    .menuButton { visibility: visible; }
-    .toolbar { visibility: hidden; }
-} */
-
-.wrapper {
+/* .wrapper {
     display: flex;
     flex-flow : row wrap;
-}
+} */
 
-app-header {
-    flex: 1 100%;
-}
-
-.halfScreen  {
-    flex: 1 50%;
+.halfWrapper  {
+    /* flex: 1 50%; */
+    max-width: 50%;
 }
 
 @media all and (max-width: 600px) {
-    .wrapper { flex-flow : column nowrap; }
-    .wrapper > * {flex: 1 100% }
+    /* .wrapper { flex-flow : column nowrap; }*/
+
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
   
 
 

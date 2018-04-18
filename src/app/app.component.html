@@ -16,14 +16,18 @@
             <mat-icon>menu</mat-icon>
         </button>
     </mat-toolbar>
-    <mat-sidenav-container class = 'sidenav-container'>
+    <mat-sidenav-container>
         <mat-sidenav #snav class = 'sidenav'>
-        
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <div class = 'content'>
-
-            </div>
+            <form >
+                <input class = 'sidenav-content' matInput value = 'Identifiant'>
+                <input class = 'sidenav-content' matInput value = 'Mot de passe'>
+                <button class = 'sidenav-content' mat-raised-button>Connexion</button>
+            </form>
+            <button class = 'sidenav-content' mat-raised-button>Register</button>
+            </mat-sidenav>
+        <mat-sidenav-content class = 'wrapper'>
+            <app-character-list class = 'halfWrapper'></app-character-list>
+            <app-sort-options class = 'halfWrapper'></app-sort-options>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
