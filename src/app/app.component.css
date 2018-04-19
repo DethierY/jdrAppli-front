@@ -1,6 +1,6 @@
 .container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     position: absolute;
     top: 0;
     bottom: 0;
@@ -8,32 +8,31 @@
     right: 0;
 }
 
-.sidenav-container {
+/* .sidenav-container {
     flex: 1;
     flex-direction: column;
-}
+} */
 
-.sidenav {
+/* .sidenav {
     width: 200px;
-}
+} */
 
 .spacer {
     flex: 1 1 auto;
 }
 
-/* .wrapper {
+.wrapper {
     display: flex;
-    flex-flow : row wrap;
-} */
+    flex-flow: row wrap;
+}
 
 .halfWrapper  {
-    /* flex: 1 50%; */
-    max-width: 50%;
+    flex: 1 50%;
 }
 
 @media all and (max-width: 600px) {
-    /* .wrapper { flex-flow : column nowrap; }*/
-
+    .wrapper { flex-flow: column nowrap; }
+    .halfWrapper { flex: 1 100%; }
 }
 
   
