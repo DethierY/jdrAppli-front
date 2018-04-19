@@ -1,3 +1,5 @@
+/* GENERAL  */
+
 .container {
     position: absolute;
     top: 0;
@@ -6,16 +8,26 @@
     right: 0;
 }
 
+/* TOOLBAR */
+
+.spacer {
+    flex: 1 1 auto;
+}
+/* SIDENAV */
+
 .sidenav {
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
     width: 200px;
+    height: 100%;
 }
 
-.spacer {
-    flex: 1 1 auto;
+.sidenav-element {
+    margin: 10px;
 }
+
+/* MAIN CONTENT */
 
 .wrapper {
     display: flex;
@@ -25,6 +37,8 @@
 .halfWrapper  {
     flex: 1 50%;
 }
+
+/* RESPONSIVITY */
 
 @media all and (max-width: 600px) {
     .wrapper { flex-flow: column nowrap; }

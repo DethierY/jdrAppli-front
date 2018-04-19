@@ -19,11 +19,15 @@
     <mat-sidenav-container>
         <mat-sidenav #snav class = 'sidenav'>
             <form >
-                <input matInput value = 'Identifiant'>
-                <input matInput value = 'Mot de passe'>
-                <button mat-raised-button>Connexion</button>
+                <input  class = 'sidenav-element'
+                        matInput value = 'Identifiant'>
+                <input  class = 'sidenav-element'
+                        matInput value = 'Mot de passe'>
+                <button class = 'sidenav-element'
+                        mat-raised-button>Connexion</button>
             </form>
-            <button mat-raised-button>Register</button>
+            <button class = 'sidenav-element'
+                    mat-raised-button>Register</button>
             </mat-sidenav>
         <mat-sidenav-content class = 'wrapper'>
             <app-character-list class = 'halfWrapper'></app-character-list>
