@@ -29,9 +29,8 @@
             <button class = 'sidenav-element'
                     mat-raised-button>Register</button>
             </mat-sidenav>
-        <mat-sidenav-content class = 'wrapper'>
-            <app-character-list class = 'halfWrapper'></app-character-list>
-            <app-sort-options class = 'halfWrapper'></app-sort-options>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

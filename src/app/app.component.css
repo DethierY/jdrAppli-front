@@ -27,17 +27,6 @@
     margin: 10px;
 }
 
-/* MAIN CONTENT */
-
-.wrapper {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-.halfWrapper  {
-    flex: 1 50%;
-}
-
 /* RESPONSIVITY */
 
 @media all and (max-width: 600px) {

@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.halfWrapper  {
+    flex: 1 50%;
+}
