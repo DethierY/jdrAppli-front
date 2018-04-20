@@ -1,16 +1,22 @@
-<p>
-  character-list works!
-</p>
-<p>
-    character-list works!
-  </p><p>
-      character-list works!
-    </p><p>
-        character-list works!
-      </p><p>
-          character-list works!
-        </p><p>
-            character-list works!
-          </p><p>
-              character-list works!
-            </p>
+<p class = 'numberCharacter'> Il y a {{ numberCharacters }} personnages</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Classe</th>
+      <th>Niveau</th>
+      <th>Note</th>
+      <th>Votants</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let c of visibleCharacters">
+      <td>{{ c.nameCharacter }}</td>
+      <td>{{ c.characterClass }}</td>
+      <td>{{ c.level }}</td>
+      <td>{{ c.score }}</td>
+      <td>{{ c.numberOfVoters }}</td>
+    </tr>
+  </tbody>
+</table>

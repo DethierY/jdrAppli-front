@@ -5,6 +5,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RoutingModule } from './/routing.module';
 
+import { CharacterService } from './character.service';
+
 import { AppComponent } from './app.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { PublicMainComponent } from './public-main/public-main.component';
@@ -24,7 +26,7 @@ import { SortOptionsComponent } from './sort-options/sort-options.component';
     NoopAnimationsModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
