@@ -6,8 +6,8 @@
       <th>Nom</th>
       <th>Classe</th>
       <th>Niveau</th>
-      <th>Note</th>
-      <th>Votants</th>
+      <th fxShow='true' fxHide.xs='true'>Note</th>
+      <th fxShow='true' fxHide.xs='true'>Votants</th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +15,8 @@
       <td>{{ c.nameCharacter }}</td>
       <td>{{ c.characterClass }}</td>
       <td>{{ c.level }}</td>
-      <td>{{ c.score }}</td>
-      <td>{{ c.numberOfVoters }}</td>
+      <td fxShow='true' fxHide.xs='true'>{{ c.score }}</td>
+      <td fxShow='true' fxHide.xs='true'>{{ c.numberOfVoters }}</td>
     </tr>
   </tbody>
 </table>
