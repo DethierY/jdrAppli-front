@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PublicMainComponent } from './public-main/public-main.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const ROUTES: Routes = [
-    { path: '', redirectTo: '/public-main', pathMatch: 'full' },
-    { path: 'public-main', component: PublicMainComponent }
+    { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+    { path: 'accueil', component: AccueilComponent }
 ];
 
 @NgModule({
