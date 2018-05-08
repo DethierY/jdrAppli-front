@@ -1,4 +1,7 @@
 <mat-card>
+
+  <p>Il y a actuellement {{numberCharacters}} personnages.</p>
+
   <mat-form-field>
     <input matInput (keyup)="filterTable($event.target.value)" placeholder="Recherche">
   </mat-form-field>

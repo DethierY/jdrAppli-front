@@ -13,6 +13,7 @@ export class AccueilComponent implements OnInit {
 
   gameCharacter: GameCharacter;
   gameCharacters = new Array<GameCharacter[]>();
+  numberCharacters: number;
 
   colonnes = ['nom', 'classe', 'niveau', 'note', 'votants'];
   dataList;
@@ -33,6 +34,7 @@ export class AccueilComponent implements OnInit {
         this.dataList = new MatTableDataSource(characters);
         this.dataList.paginator = this.paginator;
         this.dataList.sort = this.sort;
+        this.numberCharacters = characters.length;
         console.log('fin du subscribe');
       }
     );
