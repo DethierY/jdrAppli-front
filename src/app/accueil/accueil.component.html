@@ -1,40 +1,80 @@
 <mat-card>
 
+  <!-- Affichage du nombre de personnages dans la liste -->
   <p>Il y a actuellement {{numberCharacters}} personnages.</p>
 
-  <!--<mat-form-field>
+  <!-- Filtrage du tableau -->
+  <mat-form-field>
     <input matInput (keyup)="filterTable($event.target.value)" placeholder="Recherche">
-  </mat-form-field>-->
+  </mat-form-field>
 
-  <mat-table [dataSource]="dataList" matSort [class.isMobile] = "isMobile">
+  <!-- Liste des personnages -->
+  <mat-table [dataSource]="dataList" matSort>
 
+    <!-- Colonne du nom des personnages -->
     <ng-container matColumnDef = "nom">
-      <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Nom</strong></mat-header-cell>
-      <mat-cell *matCellDef="let element"><span class = 'mobile-label'>Nom:</span>{{element.characterName}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef = "classe">
-      <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Classe</strong></mat-header-cell>
-      <mat-cell *matCellDef="let element"><span class = 'mobile-label'>Classe:</span>{{element.characterClass.className}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef = "niveau">
-      <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Niveau</strong></mat-header-cell>
-      <mat-cell *matCellDef="let element"><span class = 'mobile-label'>Niveau:</span>{{element.level}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef = "note">
-      <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Note</strong></mat-header-cell>
-      <mat-cell *matCellDef="let element"><span class = 'mobile-label'>Note:</span>{{element.appreciation?.averageScore}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef = "votants">
-        <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Votants</strong></mat-header-cell>
-        <mat-cell *matCellDef="let element"><span class = 'mobile-label'>Votants:</span>{{element.appreciation?.numberOfVoters}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <strong>Nom</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class = 'mobile-label'>Nom:</span>
+        {{element.characterName}}
+      </mat-cell>
     </ng-container>
 
+    <!-- Colonne de la Classe des personnages -->
+    <ng-container matColumnDef = "classe">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <strong>Classe</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class = 'mobile-label'>Classe:</span>
+        {{element.characterClass.className}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Colonne du Niveau des personnages -->
+    <ng-container matColumnDef = "niveau">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <strong>Niveau</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class = 'mobile-label'>Niveau:</span>
+        {{element.level}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Colonne de la Note des personnages -->
+    <ng-container matColumnDef = "note">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <strong>Note</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class = 'mobile-label'>Note:</span>
+        {{element.appreciation?.averageScore}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Colonne du nombre de Votants des personnages -->
+    <ng-container matColumnDef = "votants">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <strong>Votants</strong>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class = 'mobile-label'>Votants:</span>
+          {{element.appreciation?.numberOfVoters}}
+        </mat-cell>
+    </ng-container>
+
+    <!-- Entêtes des collones du tableau de personnages -->
     <mat-header-row *matHeaderRowDef="colonnes">
     </mat-header-row>
     <mat-row *matRowDef="let row; columns:colonnes">
     </mat-row>
   </mat-table>
-  <!--<mat-paginator #paginator [pageSize]=10 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true">
-  </mat-paginator>-->
+
+  <!-- Options de pagination du tableau de personnages -->
+  <mat-paginator #paginator [pageSize]=10 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true">
+  </mat-paginator>
   
 </mat-card>
