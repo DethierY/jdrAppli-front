@@ -5,14 +5,14 @@
         </button>
         <span class = 'spacer'></span>
         <form fxShow='true' fxHide.xs='true'>
-            <input matInput value = 'Identifiant'>
-            <input matInput value = 'Mot de passe'>
+            <input class = 'connexion' matInput value = 'Identifiant'>
+            <input class = 'connexion' matInput value = 'Mot de passe'>
             <button mat-raised-button>Connexion</button>
             <button mat-raised-button>Register</button>
         </form>
         <button mat-icon-button
-            fxShow='true' fxHide.gt-xs="true"
-            (click) = 'snav.toggle()'>
+                fxShow='true' fxHide.gt-xs="true"
+                (click) = 'snav.toggle()'>
             <mat-icon>menu</mat-icon>
         </button>
     </mat-toolbar>
@@ -28,7 +28,7 @@
             </form>
             <button class = 'sidenav-element'
                     mat-raised-button>Register</button>
-            </mat-sidenav>
+        </mat-sidenav>
         <mat-sidenav-content>
             <router-outlet></router-outlet>
         </mat-sidenav-content>

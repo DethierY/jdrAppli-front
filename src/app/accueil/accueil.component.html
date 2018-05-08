@@ -2,9 +2,9 @@
 
   <p>Il y a actuellement {{numberCharacters}} personnages.</p>
 
-  <mat-form-field>
+  <!--<mat-form-field>
     <input matInput (keyup)="filterTable($event.target.value)" placeholder="Recherche">
-  </mat-form-field>
+  </mat-form-field>-->
 
   <mat-table [dataSource]="dataList" matSort>
 
@@ -34,7 +34,7 @@
     <mat-row *matRowDef="let row; columns:colonnes">
     </mat-row>
   </mat-table>
-  <mat-paginator #paginator [pageSize]=10 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true">
-  </mat-paginator>
+  <!--<mat-paginator #paginator [pageSize]=10 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true">
+  </mat-paginator>-->
   
 </mat-card>

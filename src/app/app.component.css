@@ -13,6 +13,12 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+.connexion {
+    background: white;
+    width: auto;
+    vertical-align: center;
+}
 /* SIDENAV */
 
 .sidenav {
