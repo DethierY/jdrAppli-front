@@ -12,7 +12,9 @@
       <form fxShow='true' fxHide.xs='true'>
           <input class = 'connexion' matInput value = 'Identifiant'>
           <input class = 'connexion' matInput value = 'Mot de passe'>
-          <button mat-raised-button>Connexion</button>
+          <button mat-raised-button (click) = "connexion()">
+            Connexion
+          </button>
           <button mat-raised-button>Register</button>
       </form>
 
@@ -35,7 +37,9 @@
         <input  class = 'sidenav-element'
                 matInput value = 'Mot de passe'>
         <button class = 'sidenav-element'
-                mat-raised-button>Connexion</button>
+                mat-raised-button
+                (click) = "connexion()">
+                Connexion</button>
       </form>
         <button class = 'sidenav-element'
                 mat-raised-button>Register</button>

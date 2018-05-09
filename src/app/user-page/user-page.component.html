@@ -1,0 +1,41 @@
+<div class = 'container'>
+  <mat-toolbar>
+
+      <!-- Icône de retour à la page d'accueil -->
+      <button mat-icon-button>
+        <mat-icon>home</mat-icon>
+      </button>
+
+      <span class = 'spacer'></span>
+
+      <button mat-raised-button>Mon Compte</button>
+      <button mat-raised-button>Déconnexion</button>
+
+      <!-- Menu hamburger pour mobile -->
+      <button mat-icon-button
+              fxShow='true' fxHide.gt-xs="true"
+              (click) = 'snav.toggle()'>
+        <mat-icon>menu</mat-icon>
+      </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+
+    <!-- Menu latéral pour mobile -->
+    <mat-sidenav #snav class = 'sidenav'>
+      <button class = 'sidenav-element'
+              mat-raised-button>Mon Compte</button>
+      <button class = 'sidenav-element'
+              mat-raised-button>Déconnexion</button>
+    </mat-sidenav>
+
+    <!-- Contenu principal de la page -->
+    <mat-sidenav-content>
+
+      <app-character-list></app-character-list>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
