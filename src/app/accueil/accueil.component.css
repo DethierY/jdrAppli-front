@@ -22,7 +22,6 @@
 }
 
 /* SIDENAV */
-
 .sidenav {
     display: flex;
     flex-flow: column nowrap;

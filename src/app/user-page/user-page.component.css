@@ -10,7 +10,7 @@
 
 /* TOOLBAR */
 
-button {
+.toolbarButtons {
     margin-left: 10px;
 }
 
@@ -33,9 +33,25 @@ button {
     margin: 10px;
 }
 
+/* BUTTONS */
+.userButtons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: white;
+}
+
+.userButton {
+    margin: 10px;
+}
+
+
+
+
 /* RESPONSIVITY */
 
 @media all and (max-width: 600px) {
     .wrapper { flex-flow: column nowrap; }
     .halfWrapper { flex: 1 100%; }
+    .buttons { flex-flow: column nowrap;}
 }

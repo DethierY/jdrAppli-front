@@ -14,6 +14,7 @@ export class CharacterListComponent implements OnInit {
   gameCharacter: GameCharacter;
   gameCharacters = new Array<GameCharacter[]>();
   numberCharacters: number;
+  personnage: string;
 
   colonnes = ['nom', 'classe', 'niveau', 'note', 'votants'];
   dataList;
@@ -32,7 +33,13 @@ export class CharacterListComponent implements OnInit {
         this.dataList = new MatTableDataSource(characters);
         this.dataList.paginator = this.paginator;
         this.dataList.sort = this.sort;
-        this.numberCharacters = characters.length;
+        if (characters.length === 1 || characters.length === 0 || characters === null) {
+          this.numberCharacters = 0;
+          this.personnage = 'personnage';
+        } else {
+          this.numberCharacters = characters.length;
+          this.personnage = 'personnages';
+        }
       }
     );
   }

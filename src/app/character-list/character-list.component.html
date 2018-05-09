@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card *ngIf = "gameCharacters">
 
   <!-- Affichage du nombre de personnages dans la liste -->
-  <p>Il y a actuellement {{numberCharacters}} personnages.</p>
+  <p class = 'numberCharacter'>Il y a {{numberCharacters}} {{personnage}}.</p>
 
   <!-- Filtrage du tableau -->
   <mat-form-field>

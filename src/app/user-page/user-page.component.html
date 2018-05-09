@@ -8,8 +8,14 @@
 
       <span class = 'spacer'>Bienvenue {{user.name}}!</span>
 
-      <button mat-raised-button>Mon Compte</button>
-      <button mat-raised-button>Déconnexion</button>
+      <div fxShow='true' fxHide.xs='true'>
+        <button class = 'toolbarButtons' mat-raised-button>
+          Mon Compte
+        </button>
+        <button class = 'toolbarButtons' mat-raised-button>
+          Déconnexion
+        </button>
+      </div>
 
       <!-- Menu hamburger pour mobile -->
       <button mat-icon-button
@@ -33,6 +39,17 @@
     <!-- Contenu principal de la page -->
     <mat-sidenav-content>
 
+      <!-- Boutons pour lister ses prsonnages et en créer un nouveau -->
+      <div class = 'userButtons'>
+        <button class = 'userButton' mat-raised-button>
+          Mes personnages
+        </button>
+        <button class = 'userButton' mat-raised-button>
+          Nouveau personnage
+        </button>
+      </div>
+
+      <!--Liste des Personnages-->
       <app-character-list></app-character-list>
 
     </mat-sidenav-content>

@@ -2,21 +2,29 @@
     display: none;
 }
 
+.numberCharacter {
+    text-align: center;
+    font-size: 2em;
+}
+
 @media(max-width: 600px) {
-    .mobile-label {
-        width: 80px;
-        display: inline-block;
-        font-weight: bold;
-    }
+    mat-row::after {
+        min-height: initial;
+    }  
     .mat-header-row {
         display: none;
-      }
+    }
     .mat-row { 
         flex-direction: column;
         align-items: start;
         padding: 8px 8px;
     }
-    mat-row::after {
-        min-height: initial;
+    .mobile-label {
+        width: 80px;
+        display: inline-block;
+        font-weight: bold;
+    }
+    .numberCharacter {
+        font-size: 1.4em;
     }
 }
