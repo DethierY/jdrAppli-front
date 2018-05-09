@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { UserPageComponent } from './user-page/user-page.component';
     NoopAnimationsModule,
     RoutingModule
   ],
-  providers: [GameCharacterService],
+  providers: [GameCharacterService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

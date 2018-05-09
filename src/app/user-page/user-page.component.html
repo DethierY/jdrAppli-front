@@ -1,4 +1,4 @@
-<div class = 'container'>
+<div *ngIf="user" class = 'container'>
   <mat-toolbar>
 
       <!-- Icône de retour à la page d'accueil -->
@@ -6,7 +6,7 @@
         <mat-icon>home</mat-icon>
       </button>
 
-      <span class = 'spacer'></span>
+      <span class = 'spacer'>Bienvenue {{user.name}}!</span>
 
       <button mat-raised-button>Mon Compte</button>
       <button mat-raised-button>Déconnexion</button>
