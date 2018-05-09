@@ -7,6 +7,8 @@
     font-size: 2em;
 }
 
+/* RESPONSIVITY */
+
 @media(max-width: 600px) {
     mat-row::after {
         min-height: initial;

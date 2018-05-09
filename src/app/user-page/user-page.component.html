@@ -2,7 +2,7 @@
   <mat-toolbar>
 
       <!-- Icône de retour à la page d'accueil -->
-      <button mat-icon-button (click) = "accueil()">
+      <button mat-icon-button (click) = "home()">
         <mat-icon>home</mat-icon>
       </button>
 
@@ -41,7 +41,8 @@
 
       <!-- Boutons pour lister ses prsonnages et en créer un nouveau -->
       <div class = 'userButtons'>
-        <button class = 'userButton' mat-raised-button>
+        <button class = 'userButton' mat-raised-button
+                (click) = "myCharacters()">
           Mes personnages
         </button>
         <button class = 'userButton' mat-raised-button>

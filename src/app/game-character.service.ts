@@ -15,7 +15,22 @@ export class GameCharacterService {
     private router: Router
   ) { }
 
+  getCharacterList(id): Observable<GameCharacter[]> {
+    console.log('entrée dans le getCharacterList(id)');
+    if (id === 0) {
+      console.log('service if, id = 0');
+      return this.getGameCharacterList();
+    } else {
+      console.log('service else, id = ' + id);
+      return this.getUserGameCharacterList(id);
+    }
+  }
+
   getGameCharacterList(): Observable<GameCharacter[]> {
     return this.http.get(`${HOST}/list`) as Observable<GameCharacter[]>;
+  }
+
+  getUserGameCharacterList(id): Observable<GameCharacter[]> {
+    return this.http.get(`${HOST}/list/${id}`) as Observable<GameCharacter[]>;
   }
 }
