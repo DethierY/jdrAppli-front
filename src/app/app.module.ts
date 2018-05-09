@@ -29,7 +29,10 @@ import { UserService } from './user.service';
     NoopAnimationsModule,
     RoutingModule
   ],
-  providers: [GameCharacterService, UserService],
+  providers: [
+    GameCharacterService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
