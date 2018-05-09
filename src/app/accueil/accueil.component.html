@@ -1,80 +1,52 @@
-<mat-card>
+<div class = 'container'>
+  <mat-toolbar>
 
-  <!-- Affichage du nombre de personnages dans la liste -->
-  <p>Il y a actuellement {{numberCharacters}} personnages.</p>
+      <!-- Icône de retour à la page d'accueil -->
+      <button mat-icon-button>
+              <mat-icon>home</mat-icon>
+      </button>
 
-  <!-- Filtrage du tableau -->
-  <mat-form-field>
-    <input matInput (keyup)="filterTable($event.target.value)" placeholder="Recherche">
-  </mat-form-field>
+      <span class = 'spacer'></span>
 
-  <!-- Liste des personnages -->
-  <mat-table [dataSource]="dataList" matSort>
+      <!-- Formulaire de connexion  -->
+      <form fxShow='true' fxHide.xs='true'>
+          <input class = 'connexion' matInput value = 'Identifiant'>
+          <input class = 'connexion' matInput value = 'Mot de passe'>
+          <button mat-raised-button>Connexion</button>
+          <button mat-raised-button>Register</button>
+      </form>
 
-    <!-- Colonne du nom des personnages -->
-    <ng-container matColumnDef = "nom">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        <strong>Nom</strong>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <span class = 'mobile-label'>Nom:</span>
-        {{element.characterName}}
-      </mat-cell>
-    </ng-container>
+      <!-- Menu hamburger pour mobile -->
+      <button mat-icon-button
+              fxShow='true' fxHide.gt-xs="true"
+              (click) = 'snav.toggle()'>
+          <mat-icon>menu</mat-icon>
+      </button>
 
-    <!-- Colonne de la Classe des personnages -->
-    <ng-container matColumnDef = "classe">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        <strong>Classe</strong>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <span class = 'mobile-label'>Classe:</span>
-        {{element.characterClass.className}}
-      </mat-cell>
-    </ng-container>
+  </mat-toolbar>
 
-    <!-- Colonne du Niveau des personnages -->
-    <ng-container matColumnDef = "niveau">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        <strong>Niveau</strong>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <span class = 'mobile-label'>Niveau:</span>
-        {{element.level}}
-      </mat-cell>
-    </ng-container>
+  <mat-sidenav-container>
 
-    <!-- Colonne de la Note des personnages -->
-    <ng-container matColumnDef = "note">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        <strong>Note</strong>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <span class = 'mobile-label'>Note:</span>
-        {{element.appreciation?.averageScore}}
-      </mat-cell>
-    </ng-container>
+    <!-- Menu latéral pour mobile -->
+    <mat-sidenav #snav class = 'sidenav'>
+      <form >
+        <input  class = 'sidenav-element'
+                matInput value = 'Identifiant'>
+        <input  class = 'sidenav-element'
+                matInput value = 'Mot de passe'>
+        <button class = 'sidenav-element'
+                mat-raised-button>Connexion</button>
+      </form>
+        <button class = 'sidenav-element'
+                mat-raised-button>Register</button>
+    </mat-sidenav>
 
-    <!-- Colonne du nombre de Votants des personnages -->
-    <ng-container matColumnDef = "votants">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <strong>Votants</strong>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span class = 'mobile-label'>Votants:</span>
-          {{element.appreciation?.numberOfVoters}}
-        </mat-cell>
-    </ng-container>
+    <!-- Contenu principal de la page -->
+    <mat-sidenav-content>
 
-    <!-- Entêtes des collones du tableau de personnages -->
-    <mat-header-row *matHeaderRowDef="colonnes">
-    </mat-header-row>
-    <mat-row *matRowDef="let row; columns:colonnes">
-    </mat-row>
-  </mat-table>
+      <app-character-list></app-character-list>
 
-  <!-- Options de pagination du tableau de personnages -->
-  <mat-paginator #paginator [pageSize]=10 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true">
-  </mat-paginator>
-  
-</mat-card>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

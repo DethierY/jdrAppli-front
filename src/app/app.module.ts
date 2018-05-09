@@ -10,11 +10,13 @@ import { GameCharacterService } from './game-character.service';
 
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { CharacterListComponent } from './character-list/character-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccueilComponent
+    AccueilComponent,
+    CharacterListComponent
   ],
   imports: [
     BrowserModule,
