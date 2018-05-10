@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './/routing.module';
 
 import { GameCharacterService } from './game-character.service';
@@ -14,6 +16,7 @@ import { CharacterListComponent } from './character-list/character-list.componen
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserService } from './user.service';
 import { CreationPersoComponent } from './creation-perso/creation-perso.component';
+import { CharacterClassService } from './character-class.service';
 
 @NgModule({
   declarations: [
@@ -26,14 +29,17 @@ import { CreationPersoComponent } from './creation-perso/creation-perso.componen
   imports: [
     BrowserModule,
     FlexLayoutModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
     RoutingModule
   ],
   providers: [
     GameCharacterService,
-    UserService
+    UserService,
+    CharacterClassService
   ],
   bootstrap: [AppComponent]
 })

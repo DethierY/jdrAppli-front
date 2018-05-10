@@ -16,12 +16,9 @@ export class GameCharacterService {
   ) { }
 
   getCharacterList(id): Observable<GameCharacter[]> {
-    console.log('entrée dans le getCharacterList(id)');
     if (id === 0) {
-      console.log('service if, id = 0');
       return this.getGameCharacterList();
     } else {
-      console.log('service else, id = ' + id);
       return this.getUserGameCharacterList(id);
     }
   }
@@ -32,5 +29,9 @@ export class GameCharacterService {
 
   getUserGameCharacterList(id): Observable<GameCharacter[]> {
     return this.http.get(`${HOST}/list/${id}`) as Observable<GameCharacter[]>;
+  }
+
+  createGameCharacter(gameCharacter: GameCharacter): Observable<GameCharacter> {
+    return this.http.post(`${HOST}/create`, gameCharacter) as Observable<GameCharacter>;
   }
 }
