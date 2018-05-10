@@ -44,4 +44,8 @@ export class UserPageComponent implements OnInit {
     this.user = null;
     this.router.navigate(['../accueil/list'], {relativeTo: this.route});
   }
+
+  toCreate() {
+    this.router.navigate(['./create'], {relativeTo: this.route});
+  }
 }

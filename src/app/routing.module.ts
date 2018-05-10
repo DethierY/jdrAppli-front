@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './accueil/accueil.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { CharacterListComponent } from './character-list/character-list.component';
+import { CreationPersoComponent } from './creation-perso/creation-perso.component';
 
 const ROUTES: Routes = [
     { path: '', redirectTo: '/accueil/list', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const ROUTES: Routes = [
     { path: 'user', component: UserPageComponent, children: [
         {path: 'list', component: CharacterListComponent },
         {path: 'list/:id', component: CharacterListComponent },
+        {path: 'create', component: CreationPersoComponent}
     ]},
 ];
 

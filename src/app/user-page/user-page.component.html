@@ -29,7 +29,9 @@
       <button class = 'sidenav-element'
               mat-raised-button>Mon Compte</button>
       <button class = 'sidenav-element'
-              mat-raised-button>Déconnexion</button>
+              mat-raised-button
+              (click) = "disconnection()">
+              Déconnexion</button>
     </mat-sidenav>
 
     <!-- Contenu principal de la page -->
@@ -41,7 +43,8 @@
                 (click) = "myCharacters()">
           {{ isUserCharacters? 'Tous les Personnages' : 'Mes Personnages'}}
         </button>
-        <button class = 'userButton' mat-raised-button>
+        <button class = 'userButton' mat-raised-button
+                (click) = "toCreate()">
           Nouveau personnage
         </button>
       </div>

@@ -13,13 +13,15 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserService } from './user.service';
+import { CreationPersoComponent } from './creation-perso/creation-perso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     CharacterListComponent,
-    UserPageComponent
+    UserPageComponent,
+    CreationPersoComponent
   ],
   imports: [
     BrowserModule,
