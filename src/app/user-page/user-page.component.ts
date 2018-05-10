@@ -40,6 +40,10 @@ export class UserPageComponent implements OnInit {
     }
   }
 
+  getUser(): User {
+    return this.user;
+  }
+
   disconnection() {
     this.user = null;
     this.router.navigate(['../accueil/list'], {relativeTo: this.route});

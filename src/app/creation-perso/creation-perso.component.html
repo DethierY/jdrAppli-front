@@ -1,7 +1,7 @@
-<mat-card *ngIf="character">
-  <form #postForm="ngForm" (ngSubmmit) = "onSubmit()">
+<mat-card *ngIf="gameCharacter">
+  <form #postForm="ngForm" (ngSubmit) = "onSubmit()">
     <mat-form-field>
-        <input matInput (ngModel)="character.characterName"
+        <input matInput [(ngModel)]="gameCharacter.characterName"
         placeholder = "Nom"
         name = "name" type = "text">
     </mat-form-field>
@@ -9,7 +9,7 @@
     <mat-form-field>
       <mat-select placeholder="Classe"
                   [formControl]="classControl"
-                  (ngModel)="character.characterClass.className"
+                  [(ngModel)]="gameCharacter.characterClass"
                   required>
         <mat-option *ngFor="let class of characterClasses" [value]="class">
           {{class.className}}
@@ -20,6 +20,6 @@
     <button mat-raised-button type = "submit">
       Valider
     </button>
-    <p>{{character | json}}</p>
+    <p>{{gameCharacter | json}}</p>
   </form>
 </mat-card>
