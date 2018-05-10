@@ -14,6 +14,10 @@
     flex: 1 1 auto;
 }
 
+.title {
+    font-size: 2em;
+}
+
 .connexion {
     background: white;
     width: auto;
@@ -37,6 +41,7 @@
 /* RESPONSIVITY */
 
 @media all and (max-width: 600px) {
-    .wrapper { flex-flow: column nowrap; }
     .halfWrapper { flex: 1 100%; }
+    .title { font-size: 1.7em; }
+    .wrapper { flex-flow: column nowrap; }
 }

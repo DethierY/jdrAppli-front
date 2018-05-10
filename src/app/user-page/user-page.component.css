@@ -14,9 +14,10 @@
     margin-left: 10px;
 }
 
-.spacer {
+.title {
     flex: 1 1 auto;
     text-align: center;
+    font-size: 2em;
 }
 
 /* SIDENAV */
@@ -51,7 +52,8 @@
 /* RESPONSIVITY */
 
 @media all and (max-width: 600px) {
-    .wrapper { flex-flow: column nowrap; }
+    .buttons { flex-flow: column nowrap; }
     .halfWrapper { flex: 1 100%; }
-    .buttons { flex-flow: column nowrap;}
+    .title { font-size: 1.3em; }
+    .wrapper { flex-flow: column nowrap; }
 }

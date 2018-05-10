@@ -31,15 +31,17 @@ export class UserPageComponent implements OnInit {
   }
 
   myCharacters() {
-    console.log ('isUserCharacters = ' + this.isUserCharacters);
     if (!this.isUserCharacters) {
       this.isUserCharacters = true;
-      console.log('isUserCharacters devient = ' + this.isUserCharacters);
       this.router.navigate(['./list/', this.id], {relativeTo: this.route});
     } else {
       this.isUserCharacters = false;
-      console.log('isUserCharacters devient = ' + this.isUserCharacters);
       this.router.navigate(['./list'], {relativeTo: this.route});
     }
+  }
+
+  disconnection() {
+    this.user = null;
+    this.router.navigate(['../accueil/list'], {relativeTo: this.route});
   }
 }
