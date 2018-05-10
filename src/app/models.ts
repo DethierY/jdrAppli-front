@@ -21,11 +21,6 @@ export class GameCharacter {
     public level: number;
 }
 
-export class Name {
-
-    public name: string;
-}
-
 export class User {
     public id?: number;
     public name: string;

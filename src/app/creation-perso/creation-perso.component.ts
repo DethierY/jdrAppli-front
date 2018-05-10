@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacter,
-         Name } from '../models';
+         CharacterClass } from '../models';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
 import { NgForm,
@@ -19,15 +19,8 @@ export class CreationPersoComponent implements OnInit {
 
   character: GameCharacter = new GameCharacter();
   classControl = new FormControl('', [Validators.required]);
-  name: Name;
-  classNames: Name[];
-  //   {name: 'Artilleur Nain de Bor'},
-  //   {name: 'Boucanier Chadaki'},
-  //   {name: 'Chevalier de Sommerlund'},
-  //   {name: "Frère de l'Etoile de Cristal"},
-  //   {name: 'Mage de Dessi'},
-  //   {name: 'Seigneur Kaï'}
-  // ];
+  characterClass: CharacterClass;
+  characterClasses: CharacterClass[];
 
   constructor(
     public gameCharacterService: GameCharacterService,
@@ -36,7 +29,7 @@ export class CreationPersoComponent implements OnInit {
 
   ngOnInit() {
     this.characterClassService.getClassNameList().subscribe(
-      classNames => this.classNames = classNames
+      classList => this.characterClasses = classList
     );
    }
 

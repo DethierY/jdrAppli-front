@@ -5,14 +5,14 @@
         placeholder = "Nom"
         name = "name" type = "text">
     </mat-form-field>
-    <p (ngModel)="character.level">Niveau: 1</p>
+    <p>Niveau: 1</p>
     <mat-form-field>
       <mat-select placeholder="Classe"
                   [formControl]="classControl"
                   (ngModel)="character.characterClass.className"
                   required>
-        <mat-option *ngFor="let class of classNames" [value]="class">
-          {{class.name}}
+        <mat-option *ngFor="let class of characterClasses" [value]="class">
+          {{class.className}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
