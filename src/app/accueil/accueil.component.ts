@@ -16,6 +16,6 @@ export class AccueilComponent implements OnInit {
   ngOnInit() { }
 
   connexion() {
-    this.router.navigate(['../user'], {relativeTo: this.route});
+    this.router.navigate(['../user/list'], {relativeTo: this.route});
   }
 }

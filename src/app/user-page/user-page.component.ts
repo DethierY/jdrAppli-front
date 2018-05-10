@@ -14,7 +14,7 @@ export class UserPageComponent implements OnInit {
   id = 1;
   user: User;
   userName: string;
-  userCharacter = false;
+  isUserCharacters: boolean;
 
   constructor(
     public userService: UserService,
@@ -23,22 +23,23 @@ export class UserPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isUserCharacters = false;
+    console.log('ngOnInit isUserCharacters devient false');
     this.userService.getUser(this.id).subscribe(
       user => this.user = user
     );
   }
 
-  home() {
-    if (!this.userCharacter) {
-      this.router.navigate(['../user'], {relativeTo: this.route});
+  myCharacters() {
+    console.log ('isUserCharacters = ' + this.isUserCharacters);
+    if (!this.isUserCharacters) {
+      this.isUserCharacters = true;
+      console.log('isUserCharacters devient = ' + this.isUserCharacters);
+      this.router.navigate(['./list/', this.id], {relativeTo: this.route});
     } else {
-      this.router.navigate(['../../../user'], {relativeTo: this.route});
+      this.isUserCharacters = false;
+      console.log('isUserCharacters devient = ' + this.isUserCharacters);
+      this.router.navigate(['./list'], {relativeTo: this.route});
     }
   }
-
-  myCharacters() {
-    this.userCharacter = true;
-    this.router.navigate(['./', this.id], {relativeTo: this.route});
-  }
-
 }

@@ -43,7 +43,7 @@
       <div class = 'userButtons'>
         <button class = 'userButton' mat-raised-button
                 (click) = "myCharacters()">
-          Mes personnages
+          {{ isUserCharacters? 'Tous les Personnages' : 'Mes Personnages'}}
         </button>
         <button class = 'userButton' mat-raised-button>
           Nouveau personnage
@@ -51,7 +51,8 @@
       </div>
 
       <!--Liste des Personnages-->
-      <app-character-list></app-character-list>
+      <!-- <app-character-list></app-character-list>> -->
+      <router-outlet></router-outlet>
 
     </mat-sidenav-content>
 
