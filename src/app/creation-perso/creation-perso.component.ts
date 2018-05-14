@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
+import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
-import { GameCharacter,
-         CharacterClass } from '../models';
+import { CharacterClass,
+         GameCharacter,
+         Race } from '../models';
 import { NgForm,
          FormsModule,
          FormControl,
@@ -22,6 +24,8 @@ export class CreationPersoComponent implements OnInit {
   classControl = new FormControl('', [Validators.required]);
   characterClass: CharacterClass;
   characterClasses: CharacterClass[];
+  race: Race;
+  races: Race[];
   sexes = [
     'femme',
     'homme'
@@ -35,12 +39,16 @@ export class CreationPersoComponent implements OnInit {
   constructor(
     public userPageComponent: UserPageComponent,
     public gameCharacterService: GameCharacterService,
-    public characterClassService: CharacterClassService
+    public characterClassService: CharacterClassService,
+    public raceService: RaceService
   ) { }
 
   ngOnInit() {
     this.characterClassService.getClassNameList().subscribe(
       classList => this.characterClasses = classList
+    );
+    this.raceService.getRaceList().subscribe(
+      raceList => this.races = raceList
     );
    }
 

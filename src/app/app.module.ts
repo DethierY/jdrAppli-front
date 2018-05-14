@@ -17,6 +17,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserService } from './user.service';
 import { CreationPersoComponent } from './creation-perso/creation-perso.component';
 import { CharacterClassService } from './character-class.service';
+import { RaceService } from './race.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CharacterClassService } from './character-class.service';
   providers: [
     GameCharacterService,
     UserService,
-    CharacterClassService
+    CharacterClassService,
+    RaceService
   ],
   bootstrap: [AppComponent]
 })

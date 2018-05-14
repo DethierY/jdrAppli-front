@@ -1,10 +1,14 @@
 <mat-card *ngIf="gameCharacter">
   <form #postForm="ngForm" (ngSubmit) = "onSubmit()">
+
     <mat-form-field>
         <input matInput [(ngModel)]="gameCharacter.characterName"
         placeholder = "Nom"
         name = "name" type = "text">
     </mat-form-field>
+
+    <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>
+
     <mat-form-field>
       <mat-select placeholder="Sexe"
                   [formControl]="classControl"
@@ -16,6 +20,7 @@
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <mat-select placeholder="Allégeance"
                   [formControl]="classControl"
@@ -27,7 +32,9 @@
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
     </mat-form-field>
+
     <p>Niveau: 1</p>
+
     <mat-form-field>
       <mat-select placeholder="Classe"
                   [formControl]="classControl"
@@ -39,9 +46,12 @@
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
     </mat-form-field>
+
     <button mat-raised-button type = "submit">
       Valider
     </button>
+
     <p>{{gameCharacter | json}}</p>
+
   </form>
 </mat-card>
