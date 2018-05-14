@@ -19,6 +19,8 @@ export class GameCharacter {
     public characterName: string;
     public characterClass: CharacterClass;
     public level: number;
+    public sex: string;
+    public alliegeance: string;
 }
 
 export class User {

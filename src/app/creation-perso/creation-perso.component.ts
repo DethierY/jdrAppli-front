@@ -22,6 +22,15 @@ export class CreationPersoComponent implements OnInit {
   classControl = new FormControl('', [Validators.required]);
   characterClass: CharacterClass;
   characterClasses: CharacterClass[];
+  sexes = [
+    'femme',
+    'homme'
+  ];
+  alliegeances = [
+    'bien',
+    'neutre',
+    'mal'
+  ];
 
   constructor(
     public userPageComponent: UserPageComponent,

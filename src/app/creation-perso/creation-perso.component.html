@@ -5,6 +5,28 @@
         placeholder = "Nom"
         name = "name" type = "text">
     </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Sexe"
+                  [formControl]="classControl"
+                  [(ngModel)]="gameCharacter.sex"
+                  required>
+        <mat-option *ngFor="let sex of sexes" [value]="sex">
+          {{sex}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Allégeance"
+                  [formControl]="classControl"
+                  [(ngModel)]="gameCharacter.alliegeance"
+                  required>
+        <mat-option *ngFor="let alliegeance of alliegeances" [value]="alliegeance">
+          {{alliegeance}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
+    </mat-form-field>
     <p>Niveau: 1</p>
     <mat-form-field>
       <mat-select placeholder="Classe"
