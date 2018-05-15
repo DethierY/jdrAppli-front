@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
@@ -18,7 +18,7 @@ import { NgForm,
   templateUrl: './creation-perso.component.html',
   styleUrls: ['./creation-perso.component.css']
 })
-export class CreationPersoComponent implements OnInit {
+export class CreationPersoComponent implements OnInit, AfterContentChecked {
 
   gameCharacter: GameCharacter = new GameCharacter();
   classControl = new FormControl('', [Validators.required]);
@@ -50,7 +50,13 @@ export class CreationPersoComponent implements OnInit {
     this.raceService.getRaceList().subscribe(
       raceList => this.races = raceList
     );
-   }
+  }
+
+  ngAfterContentChecked() {
+    if (typeof this.gameCharacter.sex !== 'undefined' && typeof this.gameCharacter.characterClass !== 'undefined') {
+      this.gameCharacter.height = this.setHeight();
+    }
+  }
 
   onSubmit() {
     this.gameCharacter.user = this.userPageComponent.getUser();
@@ -58,4 +64,19 @@ export class CreationPersoComponent implements OnInit {
     console.log (this.gameCharacter);
     this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe();
   }
+
+  setHeight(): any {
+    let baseHeight: number;
+    let modifier = 0;
+      if (this.gameCharacter.sex === 'homme') {
+        baseHeight = this.gameCharacter.characterClass.race.maleBaseHeight;
+      } else {
+        baseHeight = this.gameCharacter.characterClass.race.femaleBaseHeight;
+      }
+      for (let i = 0; i < this.gameCharacter.characterClass.race.heightModifier.numberOfDices; i++) {
+        modifier = modifier + ((Math.random() * this.gameCharacter.characterClass.race.heightModifier.numberOfSides) + 1);
+      }
+      return (baseHeight + modifier / 100).toFixed(2);
+    }
+
 }

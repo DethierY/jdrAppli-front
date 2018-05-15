@@ -21,6 +21,8 @@
       <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
     </mat-form-field>
 
+    <p>Taille: {{gameCharacter.height}} m</p> 
+
     <mat-form-field>
       <mat-select placeholder="Allégeance"
                   [formControl]="classControl"
