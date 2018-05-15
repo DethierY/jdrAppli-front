@@ -66,17 +66,15 @@ export class CreationPersoComponent implements OnInit, AfterContentChecked {
   }
 
   setHeight(): any {
-    let baseHeight: number;
     let modifier = 0;
-      if (this.gameCharacter.sex === 'homme') {
-        baseHeight = this.gameCharacter.characterClass.race.maleBaseHeight;
-      } else {
-        baseHeight = this.gameCharacter.characterClass.race.femaleBaseHeight;
-      }
-      for (let i = 0; i < this.gameCharacter.characterClass.race.heightModifier.numberOfDices; i++) {
-        modifier = modifier + ((Math.random() * this.gameCharacter.characterClass.race.heightModifier.numberOfSides) + 1);
-      }
-      return (baseHeight + modifier / 100).toFixed(2);
+    let baseHeight = this.gameCharacter.characterClass.race.baseHeight;
+    for (let i = 0; i < this.gameCharacter.characterClass.race.heightModifier.numberOfDices; i++) {
+      modifier = modifier + ((Math.random() * this.gameCharacter.characterClass.race.heightModifier.numberOfSides) + 1);
     }
+    if (this.gameCharacter.sex = 'femme') {
+      baseHeight = baseHeight - this.gameCharacter.characterClass.race.heightSexModifier;
+    }
+    return (baseHeight + modifier / 100).toFixed(2);
+  }
 
 }

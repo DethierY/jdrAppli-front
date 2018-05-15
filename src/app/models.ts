@@ -36,8 +36,10 @@ export class Race {
 
     public id?: number;
     public raceName: string;
-    public maleBaseHeight: number;
-    public femaleBaseHeight: number;
+    public baseHeight: number;
+    public minHeight: number;
+    public maxHeight: number;
+    public heightSexModifier: number;
     public heightModifier: DicePool;
 }
 
