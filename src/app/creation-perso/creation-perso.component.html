@@ -7,15 +7,16 @@
         name = "name" type = "text">
     </mat-form-field>
 
-    <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>
+    <p>Race: {{gameCharacter.characterClass?.race?.raceName}}</p>
 
     <mat-form-field>
       <mat-select placeholder="Sexe"
                   [formControl]="classControl"
                   [(ngModel)]="gameCharacter.sex"
+                  (ngModelChange)="sexChanged($event)"
                   required>
-        <mat-option *ngFor="let sex of sexes" [value]="sex">
-          {{sex}}
+        <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+          {{sex.viewValue}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
@@ -41,6 +42,7 @@
       <mat-select placeholder="Classe"
                   [formControl]="classControl"
                   [(ngModel)]="gameCharacter.characterClass"
+                  (ngModelChange)="classChanged($event)"
                   required>
         <mat-option *ngFor="let class of characterClasses" [value]="class">
           {{class.className}}
@@ -48,6 +50,8 @@
       </mat-select>
       <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
     </mat-form-field>
+
+    <p>Classe {{gameCharacter.characterClass?.className}}</p>
 
     <button mat-raised-button type = "submit">
       Valider
