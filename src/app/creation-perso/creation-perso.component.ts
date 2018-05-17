@@ -4,7 +4,6 @@ import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
 import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
-import { CharacterClass } from '../models';
 import { CharacterClass,
          GameCharacter,
          Race } from '../models';
@@ -46,10 +45,10 @@ export class CreationPersoComponent implements OnInit {
     this.characterClassService.getClassNameList().subscribe(
       classList => this.characterClasses = classList
     );
-    console.log('ngOnInit()');
+    this.gameCharacter.level = 1;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.gameCharacter.user = this.userPageComponent.getUser();
     this.gameCharacter.level = 1;
     this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe();
@@ -72,16 +71,26 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  setHeight() {
-    let modifier = 0;
-      let baseHeight = this.gameCharacter.characterClass.race.baseHeight;
-      for (let i = 0; i < this.gameCharacter.characterClass.race.heightModifier.numberOfDices; i++) {
-        modifier = modifier + ((Math.random() * this.gameCharacter.characterClass.race.heightModifier.numberOfSides) + 1);
-      }
-      if (this.gameCharacter.sex === 'femme') {
-        baseHeight = baseHeight - this.gameCharacter.characterClass.race.heightSexModifier;
-      }
-      this.gameCharacter.height = +(baseHeight + modifier / 100).toFixed(2);
+  setAbility (): number {
+    return 8 + this.rollingDice(1, 10);
+  }
+
+  setHeight(): void {
+    this.gameCharacter.height = +(this. gameCharacter.characterClass.race.baseHeight + this.rollingDice(
+      this.gameCharacter.characterClass.race.heightModifier.numberOfDices,
+      this.gameCharacter.characterClass.race.heightModifier.numberOfSides
+    ) / 100).toFixed(2);
+    if (this.gameCharacter.sex === 'femme') {
+      this.gameCharacter.height = +(this.gameCharacter.height - this.gameCharacter.characterClass.race.heightSexModifier).toFixed(2);
+    }
+  }
+
+  rollingDice(dice: number, sides: number): number {
+    let result = 0;
+    for (let i = 0; i < dice; i++) {
+      result = result + +((Math.random() * sides) + 1).toFixed(0);
+    }
+    return result;
   }
 
 }
