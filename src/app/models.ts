@@ -10,6 +10,8 @@ export class CharacterClass {
     public id?: number;
     public className: string;
     public race: Race;
+    public startingAge: number;
+    public startingAgeModifier: DicePool;
 }
 
 export class DicePool {
@@ -27,6 +29,7 @@ export class GameCharacter {
     public characterName: string;
     public characterClass: CharacterClass;
     public level: number;
+    public age: number;
     public sex: string;
     public height: number;
     public alliegeance: string;

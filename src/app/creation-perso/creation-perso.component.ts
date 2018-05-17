@@ -75,10 +75,20 @@ export class CreationPersoComponent implements OnInit {
     if (typeof this.gameCharacter.sex !== 'undefined' && typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setHeight();
     }
+    if (typeof this.gameCharacter.characterClass !== 'undefined') {
+      this.setAge();
+    }
   }
 
   setAbility (): number {
     return 8 + this.rollingDice(1, 10);
+  }
+
+  setAge(): void {
+    this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.rollingDice(
+      this.gameCharacter.characterClass.startingAgeModifier.numberOfDices,
+      this.gameCharacter.characterClass.startingAgeModifier.numberOfSides
+    ));
   }
 
   setHeight(): void {
