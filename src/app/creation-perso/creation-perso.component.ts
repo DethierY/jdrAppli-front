@@ -46,6 +46,12 @@ export class CreationPersoComponent implements OnInit {
       classList => this.characterClasses = classList
     );
     this.gameCharacter.level = 1;
+    this.gameCharacter.strength = this.setAbility();
+    this.gameCharacter.dexterity = this.setAbility();
+    this.gameCharacter.constitution = this.setAbility();
+    this.gameCharacter.intelligence = this.setAbility();
+    this.gameCharacter.wisdom = this.setAbility();
+    this.gameCharacter.charism = this.setAbility();
   }
 
   onSubmit(): void {

@@ -30,6 +30,12 @@ export class GameCharacter {
     public sex: string;
     public height: number;
     public alliegeance: string;
+    public strength: number;
+    public dexterity: number;
+    public constitution: number;
+    public intelligence: number;
+    public wisdom: number;
+    public charism: number;
 }
 
 export class Race {
