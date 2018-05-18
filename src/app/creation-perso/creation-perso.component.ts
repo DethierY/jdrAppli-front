@@ -69,15 +69,17 @@ export class CreationPersoComponent implements OnInit {
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setHeight();
+      this.setWeight();
     }
   }
 
   classChanged(classValue: CharacterClass): void {
     if (typeof this.gameCharacter.sex !== 'undefined' && typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setHeight();
+      this.setWeight();
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
-      this.setAge();
+      this.setStartingAge();
     }
   }
 
@@ -85,7 +87,7 @@ export class CreationPersoComponent implements OnInit {
     return 8 + this.rollingDice(1, 10);
   }
 
-  setAge(): void {
+  setStartingAge(): void {
     this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.rollingDice(
       this.gameCharacter.characterClass.startingAgeModifier.numberOfDices,
       this.gameCharacter.characterClass.startingAgeModifier.numberOfSides
@@ -102,12 +104,21 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
+  setWeight(): void {
+    this.gameCharacter.weight = +(this.gameCharacter.characterClass.race.baseWeight + this.rollingDice(
+      this.gameCharacter.characterClass.race.weightModifier.numberOfDices,
+      this.gameCharacter.characterClass.race.weightModifier.numberOfSides,
+    ) / 2).toFixed(0);
+    if (this.gameCharacter.sex === 'femme') {
+      this.gameCharacter.weight = +(this.gameCharacter.weight - this.gameCharacter.characterClass.race.weightSexModifier).toFixed(2);
+    }
+  }
+
   rollingDice(dice: number, sides: number): number {
     let result = 0;
     for (let i = 0; i < dice; i++) {
       result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
     }
-    this.test = result;
     return result;
   }
 

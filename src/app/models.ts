@@ -32,6 +32,7 @@ export class GameCharacter {
     public age: number;
     public sex: string;
     public height: number;
+    public weight: number;
     public alliegeance: string;
     public strength: number;
     public dexterity: number;
@@ -50,6 +51,11 @@ export class Race {
     public maxHeight: number;
     public heightSexModifier: number;
     public heightModifier: DicePool;
+    public baseWeight: number;
+    public minWeight: number;
+    public maxWeight: number;
+    public weightSexModifier: number;
+    public weightModifier: DicePool;
 }
 
 export class User {
