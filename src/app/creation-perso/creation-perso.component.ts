@@ -89,14 +89,14 @@ export class CreationPersoComponent implements OnInit {
 
   setStartingAge(): void {
     this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.rollingDice(
-      this.gameCharacter.characterClass.startingAgeModifier.numberOfDices,
+      this.gameCharacter.characterClass.startingAgeModifier.numberOfDice,
       this.gameCharacter.characterClass.startingAgeModifier.numberOfSides
     ));
   }
 
   setHeight(): void {
     this.gameCharacter.height = +(this. gameCharacter.characterClass.race.baseHeight + this.rollingDice(
-      this.gameCharacter.characterClass.race.heightModifier.numberOfDices,
+      this.gameCharacter.characterClass.race.heightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.heightModifier.numberOfSides
     ) / 100).toFixed(2);
     if (this.gameCharacter.sex === 'femme') {
@@ -106,7 +106,7 @@ export class CreationPersoComponent implements OnInit {
 
   setWeight(): void {
     this.gameCharacter.weight = +(this.gameCharacter.characterClass.race.baseWeight + this.rollingDice(
-      this.gameCharacter.characterClass.race.weightModifier.numberOfDices,
+      this.gameCharacter.characterClass.race.weightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.weightModifier.numberOfSides,
     ) / 2).toFixed(0);
     if (this.gameCharacter.sex === 'femme') {

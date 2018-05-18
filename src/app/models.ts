@@ -17,7 +17,7 @@ export class CharacterClass {
 export class DicePool {
 
     public id?: number;
-    public numberOfDices: number;
+    public numberOfDice: number;
     public numberOfSides: number;
 }
 
@@ -47,13 +47,9 @@ export class Race {
     public id?: number;
     public raceName: string;
     public baseHeight: number;
-    public minHeight: number;
-    public maxHeight: number;
     public heightSexModifier: number;
     public heightModifier: DicePool;
     public baseWeight: number;
-    public minWeight: number;
-    public maxWeight: number;
     public weightSexModifier: number;
     public weightModifier: DicePool;
 }
