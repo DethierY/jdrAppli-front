@@ -4,6 +4,7 @@ import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
 import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
+import { TestBed } from '@angular/core/testing';
 import { CharacterClass,
          GameCharacter,
          Race } from '../models';
@@ -104,8 +105,9 @@ export class CreationPersoComponent implements OnInit {
   rollingDice(dice: number, sides: number): number {
     let result = 0;
     for (let i = 0; i < dice; i++) {
-      result = result + +((Math.random() * sides) + 1).toFixed(0);
+      result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
     }
+    this.test = result;
     return result;
   }
 
