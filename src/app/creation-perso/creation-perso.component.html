@@ -57,12 +57,18 @@
     <p>Classe {{gameCharacter.characterClass?.className}}</p>
 
     <p>Force: {{gameCharacter.strength}}</p>
+    <P>Bonus: {{strengthBonus>0? '+':''}}{{strengthBonus}}</P>
     <p>Dextérité: {{gameCharacter.dexterity}}</p>
+    <p>Bonus: {{dexterityBonus>0? '+':''}}{{dexterityBonus}}</p>
     <p>Constitution: {{gameCharacter.constitution}}</p>
+    <P>Bonus: {{constitutionBonus>0? '+':''}}{{constitutionBonus}}</P>
     <p>Intelligence: {{gameCharacter.intelligence}}</p>
+    <P>Bonus: {{intelligenceBonus>0? '+':''}}{{intelligenceBonus}}</P>
     <p>Sagesse: {{gameCharacter.wisdom}}</p>
+    <P>Bonus: {{wisdomBonus>0? '+':''}}{{wisdomBonus}}</P>
     <p>Charisme: {{gameCharacter.charism}}</p>
-
+    <P>Bonus: {{charismBonus>0? '+':''}}{{charismBonus}}</P>
+    
     <button mat-raised-button type = "submit">
       Valider
     </button>

@@ -31,9 +31,14 @@ export class CreationPersoComponent implements OnInit {
   ];
   alliegeances = [
     'bien',
-    'neutre',
-    'mal'
+    'neutre'
   ];
+  strengthBonus: number;
+  dexterityBonus: number;
+  constitutionBonus: number;
+  intelligenceBonus: number;
+  wisdomBonus: number;
+  charismBonus: number;
 
   constructor(
     public userPageComponent: UserPageComponent,
@@ -48,11 +53,17 @@ export class CreationPersoComponent implements OnInit {
     );
     this.gameCharacter.level = 1;
     this.gameCharacter.strength = this.setAbility();
+    this.strengthBonus = this.setAbilityBonus(this.gameCharacter.strength);
     this.gameCharacter.dexterity = this.setAbility();
+    this.dexterityBonus = this.setAbilityBonus(this.gameCharacter.dexterity);
     this.gameCharacter.constitution = this.setAbility();
+    this.constitutionBonus = this.setAbilityBonus(this.gameCharacter.constitution);
     this.gameCharacter.intelligence = this.setAbility();
+    this.intelligenceBonus = this.setAbilityBonus(this.gameCharacter.intelligence);
     this.gameCharacter.wisdom = this.setAbility();
+    this.wisdomBonus = this.setAbilityBonus(this.gameCharacter.wisdom);
     this.gameCharacter.charism = this.setAbility();
+    this.charismBonus = this.setAbilityBonus(this.gameCharacter.charism);
   }
 
   onSubmit(): void {
@@ -122,4 +133,15 @@ export class CreationPersoComponent implements OnInit {
     return result;
   }
 
+  setAbilityBonus(ability: number): number {
+    let bonus = 0;
+    if (ability > 10) {
+      bonus = +(Math.trunc((ability - 10) / 2)).toFixed(0);
+    } else if (ability < 10 ) {
+      bonus = +(Math.trunc((ability - 11) / 2)).toFixed(0);
+    } else {
+      bonus = 0;
+    }
+    return bonus;
+  }
 }
