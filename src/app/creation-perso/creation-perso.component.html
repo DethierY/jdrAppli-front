@@ -69,9 +69,9 @@
     <p>Charisme: {{gameCharacter.charism}}</p>
     <P>Bonus: {{charismBonus>0? '+':''}}{{charismBonus}}</P>
 
-    <p>Vigueur: {{fortitudeSave}}</p>
-    <P>Réflexe: {{reflexSave}}</P>
-    <p>Volonté: {{willSave}}</p>
+    <p>Vigueur: {{fortitudeSave>0? '+':''}}{{fortitudeSave}}</p>
+    <P>Réflexe: {{reflexSave>0? '+':''}}{{reflexSave}}</P>
+    <p>Volonté: {{willSave>0? '+':''}}{{willSave}}</p>
     
     <button mat-raised-button type = "submit">
       Valider

@@ -95,9 +95,9 @@ export class CreationPersoComponent implements OnInit {
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setStartingAge();
-      this.fortitudeSave = this.setSave(this.gameCharacter.characterClass.fortitudeSave, this.constitutionBonus);
-      this.reflexSave = this.setSave(this.gameCharacter.characterClass.reflexSave, this.dexterityBonus);
-      this.willSave = this.setSave(this.gameCharacter.characterClass.willSave, this.wisdomBonus);
+      this.fortitudeSave = this.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+      this.reflexSave = this.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+      this.willSave = this.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
     }
   }
 
@@ -152,9 +152,73 @@ export class CreationPersoComponent implements OnInit {
     return bonus;
   }
 
-  setSave(levelBonus: LevelBonus, bonusAbility: number): number {
+  setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
     let save = 0;
-    save = levelBonus.level1 + bonusAbility;
+    save = this.setLevelBonusValue(levelBonus, level) + bonusAbility;
     return save;
+  }
+
+  setLevelBonusValue(levelBonus: LevelBonus, level: number): number {
+    let levelBonusValue = 0;
+    switch (level) {
+      case 1:
+        levelBonusValue = levelBonus.level1;
+        break;
+      case 2:
+        levelBonusValue = levelBonus.level2;
+        break;
+      case 3:
+        levelBonusValue = levelBonus.level3;
+        break;
+      case 4:
+        levelBonusValue = levelBonus.level4;
+        break;
+      case 5:
+        levelBonusValue = levelBonus.level5;
+        break;
+      case 6:
+        levelBonusValue = levelBonus.level6;
+        break;
+      case 7:
+        levelBonusValue = levelBonus.level7;
+        break;
+      case 8:
+        levelBonusValue = levelBonus.level8;
+        break;
+      case 9:
+        levelBonusValue = levelBonus.level9;
+        break;
+      case 10:
+        levelBonusValue = levelBonus.level10;
+        break;
+      case 11:
+        levelBonusValue = levelBonus.level11;
+        break;
+      case 12:
+        levelBonusValue = levelBonus.level12;
+        break;
+      case 13:
+        levelBonusValue = levelBonus.level13;
+        break;
+      case 14:
+        levelBonusValue = levelBonus.level14;
+        break;
+      case 15:
+        levelBonusValue = levelBonus.level15;
+        break;
+      case 16:
+        levelBonusValue = levelBonus.level16;
+        break;
+      case 17:
+        levelBonusValue = levelBonus.level17;
+        break;
+      case 18:
+        levelBonusValue = levelBonus.level18;
+        break;
+      case 19:
+        levelBonusValue = levelBonus.level19;
+        break;
+    }
+    return levelBonusValue;
   }
 }
