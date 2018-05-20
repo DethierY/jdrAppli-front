@@ -7,6 +7,7 @@ import { UserPageComponent } from '../user-page/user-page.component';
 import { TestBed } from '@angular/core/testing';
 import { CharacterClass,
          GameCharacter,
+         LevelBonus,
          Race } from '../models';
 import { NgForm,
          FormsModule,
@@ -39,6 +40,9 @@ export class CreationPersoComponent implements OnInit {
   intelligenceBonus: number;
   wisdomBonus: number;
   charismBonus: number;
+  fortitudeSave: number;
+  reflexSave: number;
+  willSave: number;
 
   constructor(
     public userPageComponent: UserPageComponent,
@@ -91,6 +95,9 @@ export class CreationPersoComponent implements OnInit {
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setStartingAge();
+      this.fortitudeSave = this.setSave(this.gameCharacter.characterClass.fortitudeSave, this.constitutionBonus);
+      this.reflexSave = this.setSave(this.gameCharacter.characterClass.reflexSave, this.dexterityBonus);
+      this.willSave = this.setSave(this.gameCharacter.characterClass.willSave, this.wisdomBonus);
     }
   }
 
@@ -143,5 +150,11 @@ export class CreationPersoComponent implements OnInit {
       bonus = 0;
     }
     return bonus;
+  }
+
+  setSave(levelBonus: LevelBonus, bonusAbility: number): number {
+    let save = 0;
+    save = levelBonus.level1 + bonusAbility;
+    return save;
   }
 }
