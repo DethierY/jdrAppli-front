@@ -59,17 +59,17 @@ export class CreationPersoComponent implements OnInit {
     );
     this.gameCharacter.level = 1;
     this.gameCharacter.strength = this.setAbility();
-    this.strengthBonus = this.setAbilityBonus(this.gameCharacter.strength);
+    this.strengthBonus = this.calculationService.setAbilityBonus(this.gameCharacter.strength);
     this.gameCharacter.dexterity = this.setAbility();
-    this.dexterityBonus = this.setAbilityBonus(this.gameCharacter.dexterity);
+    this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
     this.gameCharacter.constitution = this.setAbility();
-    this.constitutionBonus = this.setAbilityBonus(this.gameCharacter.constitution);
+    this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
     this.gameCharacter.intelligence = this.setAbility();
-    this.intelligenceBonus = this.setAbilityBonus(this.gameCharacter.intelligence);
+    this.intelligenceBonus = this.calculationService.setAbilityBonus(this.gameCharacter.intelligence);
     this.gameCharacter.wisdom = this.setAbility();
-    this.wisdomBonus = this.setAbilityBonus(this.gameCharacter.wisdom);
+    this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
     this.gameCharacter.charism = this.setAbility();
-    this.charismBonus = this.setAbilityBonus(this.gameCharacter.charism);
+    this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charism);
   }
 
   onSubmit(): void {
@@ -132,26 +132,6 @@ export class CreationPersoComponent implements OnInit {
     if (this.gameCharacter.sex === 'femme') {
       this.gameCharacter.weight = +(this.gameCharacter.weight - this.gameCharacter.characterClass.race.weightSexModifier).toFixed(2);
     }
-  }
-
-  // rollingDice(dice: number, sides: number): number {
-  //   let result = 0;
-  //   for (let i = 0; i < dice; i++) {
-  //     result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
-  //   }
-  //   return result;
-  // }
-
-  setAbilityBonus(ability: number): number {
-    let bonus = 0;
-    if (ability > 10) {
-      bonus = +(Math.trunc((ability - 10) / 2)).toFixed(0);
-    } else if (ability < 10 ) {
-      bonus = +(Math.trunc((ability - 11) / 2)).toFixed(0);
-    } else {
-      bonus = 0;
-    }
-    return bonus;
   }
 
   setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
