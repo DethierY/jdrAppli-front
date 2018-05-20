@@ -97,9 +97,9 @@ export class CreationPersoComponent implements OnInit {
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setStartingAge();
-      this.fortitudeSave = this.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
-      this.reflexSave = this.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
-      this.willSave = this.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
+      this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+      this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+      this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
     }
   }
 
@@ -132,12 +132,6 @@ export class CreationPersoComponent implements OnInit {
     if (this.gameCharacter.sex === 'femme') {
       this.gameCharacter.weight = +(this.gameCharacter.weight - this.gameCharacter.characterClass.race.weightSexModifier).toFixed(2);
     }
-  }
-
-  setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
-    let save = 0;
-    save = this.calculationService.setLevelBonusValue(levelBonus, level) + bonusAbility;
-    return save;
   }
 
 }
