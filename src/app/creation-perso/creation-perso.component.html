@@ -4,7 +4,8 @@
     <mat-form-field>
         <input matInput [(ngModel)]="gameCharacter.characterName"
         placeholder = "Nom"
-        name = "name" type = "text">
+        name = "name" type = "text"
+        required>
     </mat-form-field>
 
     <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>

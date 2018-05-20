@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
+import { CalculationService } from '../calculation.service';
 import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
 import { TestBed } from '@angular/core/testing';
@@ -48,7 +49,8 @@ export class CreationPersoComponent implements OnInit {
     public userPageComponent: UserPageComponent,
     public gameCharacterService: GameCharacterService,
     public characterClassService: CharacterClassService,
-    public raceService: RaceService
+    public raceService: RaceService,
+    public calculationService: CalculationService
   ) { }
 
   ngOnInit() {
@@ -102,18 +104,18 @@ export class CreationPersoComponent implements OnInit {
   }
 
   setAbility (): number {
-    return 8 + this.rollingDice(1, 10);
+    return 8 + this.calculationService.rollingDice(1, 10);
   }
 
   setStartingAge(): void {
-    this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.rollingDice(
+    this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.startingAgeModifier.numberOfDice,
       this.gameCharacter.characterClass.startingAgeModifier.numberOfSides
     ));
   }
 
   setHeight(): void {
-    this.gameCharacter.height = +(this. gameCharacter.characterClass.race.baseHeight + this.rollingDice(
+    this.gameCharacter.height = +(this. gameCharacter.characterClass.race.baseHeight + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.race.heightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.heightModifier.numberOfSides
     ) / 100).toFixed(2);
@@ -123,7 +125,7 @@ export class CreationPersoComponent implements OnInit {
   }
 
   setWeight(): void {
-    this.gameCharacter.weight = +(this.gameCharacter.characterClass.race.baseWeight + this.rollingDice(
+    this.gameCharacter.weight = +(this.gameCharacter.characterClass.race.baseWeight + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.race.weightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.weightModifier.numberOfSides,
     ) / 2).toFixed(0);
@@ -132,13 +134,13 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  rollingDice(dice: number, sides: number): number {
-    let result = 0;
-    for (let i = 0; i < dice; i++) {
-      result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
-    }
-    return result;
-  }
+  // rollingDice(dice: number, sides: number): number {
+  //   let result = 0;
+  //   for (let i = 0; i < dice; i++) {
+  //     result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
+  //   }
+  //   return result;
+  // }
 
   setAbilityBonus(ability: number): number {
     let bonus = 0;
