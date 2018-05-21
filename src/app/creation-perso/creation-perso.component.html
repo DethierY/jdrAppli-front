@@ -16,7 +16,7 @@
       <mat-select placeholder="Sexe"
                   [formControl]="classControl"
                   [(ngModel)]="gameCharacter.sex"
-                  (ngModelChange)="sexChanged($event)"
+                  (ngModelChange)="sexChanged()"
                   required>
         <mat-option *ngFor="let sex of sexes" [value]="sex.value">
           {{sex.viewValue}}
@@ -25,8 +25,8 @@
       <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
     </mat-form-field>
 
-    <p>Taille: {{gameCharacter.height}} {{gameCharacter.characterClass? 'm':''}}</p>
-    <p>Poids: {{gameCharacter.weight}} {{gameCharacter.characterClass? 'kg':''}}</p>
+    <p>Taille: {{gameCharacter.height}} {{gameCharacter.height? 'm':''}}</p>
+    <p>Poids: {{gameCharacter.weight}} {{gameCharacter.weight? 'kg':''}}</p>
 
     <mat-form-field>
       <mat-select placeholder="Allégeance"
@@ -46,7 +46,7 @@
       <mat-select placeholder="Classe"
                   [formControl]="classControl"
                   [(ngModel)]="gameCharacter.characterClass"
-                  (ngModelChange)="classChanged($event)"
+                  (ngModelChange)="classChanged()"
                   required>
         <mat-option *ngFor="let class of characterClasses" [value]="class">
           {{class.className}}
@@ -57,17 +57,60 @@
 
     <p>Classe {{gameCharacter.characterClass?.className}}</p>
 
-    <p>Force: {{gameCharacter.strength}}</p>
+    <input (focus)="chooseScore('draw1')"
+           [(ngModel)]="draw1" name="draw1"
+           [ngModelOptions] = "{standalone:true}">
+    <input (focus)="chooseScore('draw2')"
+           [(ngModel)]="draw2" name="draw2"
+           [ngModelOptions] = "{standalone:true}">
+    <input (focus)="chooseScore('draw3')"
+           [(ngModel)]="draw3" name="draw3"
+           [ngModelOptions] = "{standalone:true}">
+    <input (focus)="chooseScore('draw4')"
+           [(ngModel)]="draw4" name="draw4"
+           [ngModelOptions] = "{standalone:true}">
+    <input (focus)="chooseScore('draw5')"
+           [(ngModel)]="draw5" name="draw5"
+           [ngModelOptions] = "{standalone:true}">
+    <input (focus)="chooseScore('draw6')"
+           [(ngModel)]="draw6" name="draw6"
+           [ngModelOptions] = "{standalone:true}">
+    
+    <p>Force: </p>
+    <input (focus)="chooseScore('strength')"
+           [(ngModel)] = "gameCharacter.strength"
+           name="strength"
+           required>
     <P>Bonus: {{strengthBonus>0? '+':''}}{{strengthBonus}}</P>
-    <p>Dextérité: {{gameCharacter.dexterity}}</p>
+    <p>Dextérité: </p>
+    <input (focus)="chooseScore('dexterity')"
+           [(ngModel)] = "gameCharacter.dexterity"
+           name="dexterity"
+           required>
     <p>Bonus: {{dexterityBonus>0? '+':''}}{{dexterityBonus}}</p>
-    <p>Constitution: {{gameCharacter.constitution}}</p>
+    <p>Constitution: </p>
+    <input (focus)="chooseScore('constitution')"
+           [(ngModel)] = "gameCharacter.constitution"
+           name="constitution"
+           required>
     <P>Bonus: {{constitutionBonus>0? '+':''}}{{constitutionBonus}}</P>
-    <p>Intelligence: {{gameCharacter.intelligence}}</p>
+    <p>Intelligence: </p>
+    <input (focus)="chooseScore('intelligence')"
+           [(ngModel)] = "gameCharacter.intelligence"
+           name="intelligence"
+           required>
     <P>Bonus: {{intelligenceBonus>0? '+':''}}{{intelligenceBonus}}</P>
-    <p>Sagesse: {{gameCharacter.wisdom}}</p>
+    <p>Sagesse: </p>
+    <input (focus)="chooseScore('wisdom')"
+           [(ngModel)] = "gameCharacter.wisdom"
+           name="wisdom"
+           required>
     <P>Bonus: {{wisdomBonus>0? '+':''}}{{wisdomBonus}}</P>
-    <p>Charisme: {{gameCharacter.charism}}</p>
+    <p>Charisme: </p>
+    <input (focus)="chooseScore('charism')"
+           [(ngModel)] = "gameCharacter.charism"
+           name="charism"
+           required>
     <P>Bonus: {{charismBonus>0? '+':''}}{{charismBonus}}</P>
 
     <p>Vigueur: {{fortitudeSave>0? '+':''}}{{fortitudeSave}}</p>

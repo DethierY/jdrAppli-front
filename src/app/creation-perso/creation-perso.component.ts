@@ -44,6 +44,13 @@ export class CreationPersoComponent implements OnInit {
   fortitudeSave: number;
   reflexSave: number;
   willSave: number;
+  chosenScore: any;
+  draw1: number;
+  draw2: number;
+  draw3: number;
+  draw4: number;
+  draw5: number;
+  draw6: number;
 
   constructor(
     public userPageComponent: UserPageComponent,
@@ -58,18 +65,12 @@ export class CreationPersoComponent implements OnInit {
       classList => this.characterClasses = classList
     );
     this.gameCharacter.level = 1;
-    this.gameCharacter.strength = this.setAbility();
-    this.strengthBonus = this.calculationService.setAbilityBonus(this.gameCharacter.strength);
-    this.gameCharacter.dexterity = this.setAbility();
-    this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
-    this.gameCharacter.constitution = this.setAbility();
-    this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
-    this.gameCharacter.intelligence = this.setAbility();
-    this.intelligenceBonus = this.calculationService.setAbilityBonus(this.gameCharacter.intelligence);
-    this.gameCharacter.wisdom = this.setAbility();
-    this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
-    this.gameCharacter.charism = this.setAbility();
-    this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charism);
+    this.draw1 = this.setAbility();
+    this.draw2 = this.setAbility();
+    this.draw3 = this.setAbility();
+    this.draw4 = this.setAbility();
+    this.draw5 = this.setAbility();
+    this.draw6 = this.setAbility();
   }
 
   onSubmit(): void {
@@ -78,7 +79,7 @@ export class CreationPersoComponent implements OnInit {
     this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe();
   }
 
-  sexChanged(sexValue: string): void {
+  sexChanged(): void {
     if (typeof this.gameCharacter.sex === 'undefined') {
     } else {
       if (typeof this.gameCharacter.characterClass === 'undefined') {
@@ -90,7 +91,7 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  classChanged(classValue: CharacterClass): void {
+  classChanged(): void {
     if (typeof this.gameCharacter.sex !== 'undefined' && typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setHeight();
       this.setWeight();
@@ -131,6 +132,69 @@ export class CreationPersoComponent implements OnInit {
     ) / 2).toFixed(0);
     if (this.gameCharacter.sex === 'femme') {
       this.gameCharacter.weight = +(this.gameCharacter.weight - this.gameCharacter.characterClass.race.weightSexModifier).toFixed(2);
+    }
+  }
+
+  setNewScore(score: any): number {
+    let storedScore: any;
+    // if (typeof score === 'undefined') {
+    //   score = '';
+    // }
+    storedScore = score;
+    score = this.chosenScore;
+    this.chosenScore = storedScore;
+    return score;
+  }
+
+  chooseScore(value: string): void {
+    switch (value) {
+      case 'strength':
+        this.gameCharacter.strength = this.setNewScore(this.gameCharacter.strength);
+        this.strengthBonus = this.calculationService.setAbilityBonus(this.gameCharacter.strength);
+        console.log('force: ' + this.gameCharacter.strength);
+        console.log('bonus force: ' + this.strengthBonus);
+        break;
+      case 'dexterity':
+        this.gameCharacter.dexterity = this.setNewScore(this.gameCharacter.dexterity);
+        this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
+        this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+        break;
+      case 'constitution':
+        this.gameCharacter.constitution = this.setNewScore(this.gameCharacter.constitution);
+        this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
+        this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+        break;
+      case 'intelligence':
+        this.gameCharacter.intelligence = this.setNewScore(this.gameCharacter.intelligence);
+        this.intelligenceBonus = this.calculationService.setAbilityBonus(this.gameCharacter.intelligence);
+        break;
+      case 'wisdom':
+        this.gameCharacter.wisdom = this.setNewScore(this.gameCharacter.wisdom);
+        this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
+        this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
+      break;
+      case 'charism':
+        this.gameCharacter.charism = this.setNewScore(this.gameCharacter.charism);
+        this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charism);
+        break;
+      case 'draw1':
+        this.draw1 = this.setNewScore(this.draw1);
+        break;
+      case 'draw2':
+        this.draw2 = this.setNewScore(this.draw2);
+        break;
+      case 'draw3':
+        this.draw3 = this.setNewScore(this.draw3);
+        break;
+      case 'draw4':
+        this.draw4 = this.setNewScore(this.draw4);
+        break;
+      case 'draw5':
+        this.draw5 = this.setNewScore(this.draw5);
+        break;
+      case 'draw6':
+        this.draw6 = this.setNewScore(this.draw6);
+        break;
     }
   }
 

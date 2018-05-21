@@ -15,20 +15,24 @@ export class CalculationService {
   }
 
   setAbilityBonus(ability: number): number {
-    let bonus = 0;
+    let bonus: any;
     if (ability > 10) {
       bonus = +(Math.trunc((ability - 10) / 2)).toFixed(0);
     } else if (ability < 10 ) {
       bonus = +(Math.trunc((ability - 11) / 2)).toFixed(0);
     } else {
-      bonus = 0;
+      bonus = '';
     }
     return bonus;
   }
 
   setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
     let save = 0;
-    save = this.setLevelBonusValue(levelBonus, level) + bonusAbility;
+    if (typeof bonusAbility === 'undefined') {
+      save = this.setLevelBonusValue(levelBonus, level);
+    } else {
+      save = this.setLevelBonusValue(levelBonus, level) + bonusAbility;
+    }
     return save;
   }
 
