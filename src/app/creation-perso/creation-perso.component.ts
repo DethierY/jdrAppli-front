@@ -60,7 +60,7 @@ export class CreationPersoComponent implements OnInit {
     public calculationService: CalculationService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.characterClassService.getClassNameList().subscribe(
       classList => this.characterClasses = classList
     );
@@ -98,6 +98,7 @@ export class CreationPersoComponent implements OnInit {
     }
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setStartingAge();
+      this.setStartingWealth();
       this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
       this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
       this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
@@ -137,9 +138,6 @@ export class CreationPersoComponent implements OnInit {
 
   setNewScore(score: any): number {
     let storedScore: any;
-    // if (typeof score === 'undefined') {
-    //   score = '';
-    // }
     storedScore = score;
     score = this.chosenScore;
     this.chosenScore = storedScore;
@@ -198,4 +196,14 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
+    setStartingWealth() {
+    if (this.gameCharacter.characterClass.wealthModifier !== null) {
+        const bonusWealth = this.calculationService.rollingDice(
+          this.gameCharacter.characterClass.wealthModifier.numberOfDice,
+          this.gameCharacter.characterClass.wealthModifier.numberOfSides);
+          this.gameCharacter.wealth = this.gameCharacter.characterClass.startingWealth + bonusWealth;
+      } else {
+      this.gameCharacter.wealth = this.gameCharacter.characterClass.startingWealth;
+      }
+    }
 }
