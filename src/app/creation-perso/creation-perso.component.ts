@@ -160,6 +160,8 @@ export class CreationPersoComponent implements OnInit {
         this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+        } else {
+          this.reflexSave = this.dexterityBonus;
         }
         break;
       case 'constitution':
@@ -167,6 +169,8 @@ export class CreationPersoComponent implements OnInit {
         this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+        } else {
+          this.fortitudeSave = this.constitutionBonus;
         }
         this.setStartingEndurance();
         break;
@@ -179,6 +183,8 @@ export class CreationPersoComponent implements OnInit {
         this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
+        } else {
+          this.willSave = this.wisdomBonus;
         }
         break;
       case 'charism':
