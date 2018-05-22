@@ -15,13 +15,13 @@ export class CalculationService {
   }
 
   setAbilityBonus(ability: number): number {
-    let bonus: any;
-    if (ability > 10) {
+    let bonus: number;
+    if (ability > 11) {
       bonus = +(Math.trunc((ability - 10) / 2)).toFixed(0);
     } else if (ability < 10 ) {
       bonus = +(Math.trunc((ability - 11) / 2)).toFixed(0);
     } else {
-      bonus = '';
+      bonus = 0;
     }
     return bonus;
   }

@@ -16,6 +16,7 @@ export class CharacterClass {
     public reflexSave: LevelBonus;
     public willSave: LevelBonus;
     public startingWealth: number;
+    public enduranceDie: DicePool;
     public wealthModifier: DicePool;
 }
 
@@ -45,6 +46,7 @@ export class GameCharacter {
     public intelligence: number;
     public wisdom: number;
     public charism: number;
+    public endurance: number;
     public wealth: number;
 }
 

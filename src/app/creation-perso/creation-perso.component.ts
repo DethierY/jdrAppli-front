@@ -35,12 +35,12 @@ export class CreationPersoComponent implements OnInit {
     'bien',
     'neutre'
   ];
-  strengthBonus: number;
-  dexterityBonus: number;
-  constitutionBonus: number;
-  intelligenceBonus: number;
-  wisdomBonus: number;
-  charismBonus: number;
+  strengthBonus = 0;
+  dexterityBonus = 0;
+  constitutionBonus = 0;
+  intelligenceBonus = 0;
+  wisdomBonus = 0;
+  charismBonus = 0;
   fortitudeSave: number;
   reflexSave: number;
   willSave: number;
@@ -99,6 +99,7 @@ export class CreationPersoComponent implements OnInit {
     if (typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setStartingAge();
       this.setStartingWealth();
+      this.setStartingEndurance();
       this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
       this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
       this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
@@ -160,7 +161,10 @@ export class CreationPersoComponent implements OnInit {
       case 'constitution':
         this.gameCharacter.constitution = this.setNewScore(this.gameCharacter.constitution);
         this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
-        this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+        if (typeof this.gameCharacter.characterClass !== 'undefined') {
+          this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
+        }
+        this.setStartingEndurance();
         break;
       case 'intelligence':
         this.gameCharacter.intelligence = this.setNewScore(this.gameCharacter.intelligence);
@@ -196,14 +200,24 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-    setStartingWealth() {
+  setStartingEndurance() {
+    if (typeof this.gameCharacter.characterClass === 'undefined') {
+      this.gameCharacter.endurance = this.constitutionBonus;
+    } else {
+      this.gameCharacter.endurance =
+        this.gameCharacter.characterClass.enduranceDie.numberOfSides +
+        this.constitutionBonus;
+    }
+  }
+
+  setStartingWealth() {
     if (this.gameCharacter.characterClass.wealthModifier !== null) {
         const bonusWealth = this.calculationService.rollingDice(
           this.gameCharacter.characterClass.wealthModifier.numberOfDice,
           this.gameCharacter.characterClass.wealthModifier.numberOfSides);
           this.gameCharacter.wealth = this.gameCharacter.characterClass.startingWealth + bonusWealth;
-      } else {
+    } else {
       this.gameCharacter.wealth = this.gameCharacter.characterClass.startingWealth;
-      }
     }
+  }
 }
