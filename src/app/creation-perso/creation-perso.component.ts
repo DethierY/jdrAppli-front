@@ -158,7 +158,9 @@ export class CreationPersoComponent implements OnInit {
       case 'dexterity':
         this.gameCharacter.dexterity = this.setNewScore(this.gameCharacter.dexterity);
         this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
-        this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+        if (typeof this.gameCharacter.characterClass !== 'undefined') {
+          this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
+        }
         break;
       case 'constitution':
         this.gameCharacter.constitution = this.setNewScore(this.gameCharacter.constitution);
@@ -175,8 +177,10 @@ export class CreationPersoComponent implements OnInit {
       case 'wisdom':
         this.gameCharacter.wisdom = this.setNewScore(this.gameCharacter.wisdom);
         this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
-        this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
-      break;
+        if (typeof this.gameCharacter.characterClass !== 'undefined') {
+          this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
+        }
+        break;
       case 'charism':
         this.gameCharacter.charism = this.setNewScore(this.gameCharacter.charism);
         this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charism);
