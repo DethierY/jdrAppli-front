@@ -44,6 +44,7 @@ export class CreationPersoComponent implements OnInit {
   fortitudeSave: number;
   reflexSave: number;
   willSave: number;
+  rank: string;
   chosenScore: any;
   draw1: number;
   draw2: number;
@@ -100,6 +101,7 @@ export class CreationPersoComponent implements OnInit {
       this.setStartingAge();
       this.setStartingWealth();
       this.setStartingEndurance();
+      this.rank = this.calculationService.setRank(this.gameCharacter.level, this.gameCharacter.characterClass);
       this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
       this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
       this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);

@@ -18,6 +18,7 @@ export class CharacterClass {
     public startingWealth: number;
     public enduranceDie: DicePool;
     public wealthModifier: DicePool;
+    public rank: Rank;
 }
 
 export class DicePool {
@@ -85,6 +86,31 @@ export class Race {
     public baseWeight: number;
     public weightSexModifier: number;
     public weightModifier: DicePool;
+}
+
+export class Rank {
+
+    public id?: number;
+    public level1: string;
+    public level2: string;
+    public level3: string;
+    public level4: string;
+    public level5: string;
+    public level6: string;
+    public level7: string;
+    public level8: string;
+    public level9: string;
+    public level10: string;
+    public level11: string;
+    public level12: string;
+    public level13: string;
+    public level14: string;
+    public level15: string;
+    public level16: string;
+    public level17: string;
+    public level18: string;
+    public level19: string;
+    public level20: string;
 }
 
 export class User {
