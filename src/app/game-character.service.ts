@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { Router } from '@angular/router';
 import { GameCharacter } from './models';
 
 const httpOptions = {headers: new HttpHeaders ({'Content-Type': 'application/json'})};
+const postHttpOptions = {headers: new HttpHeaders ({'Content-Type': 'application/json'}), responseType: 'text' as 'text'};
 const HOST = 'http://localhost:8080/character';
 
 @Injectable()
@@ -31,7 +32,7 @@ export class GameCharacterService {
     return this.http.get(`${HOST}/list/${id}`, httpOptions) as Observable<GameCharacter[]>;
   }
 
-  createGameCharacter(gameCharacter: GameCharacter): Observable<string> {
-    return this.http.post(`${HOST}/create`, gameCharacter, httpOptions) as Observable<string>;
+  createGameCharacter(gameCharacter: GameCharacter): Observable<String> {
+    return this.http.post(`${HOST}/create`, gameCharacter, postHttpOptions) as Observable<String>;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
@@ -53,7 +54,6 @@ export class CreationPersoComponent implements OnInit {
   draw5: number;
   draw6: number;
   chosenScore: any;
-  creationResponse: string;
 
   constructor(
     public dialog: MatDialog,
@@ -80,18 +80,23 @@ export class CreationPersoComponent implements OnInit {
   onSubmit(): void {
     this.gameCharacter.user = this.userPageComponent.getUser();
     this.gameCharacter.level = 1;
-    this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe(
-      response => { console.log("C'est la réponse: " + response);
-        this.openResponse(response);
+    this.createGameCharacter(this.gameCharacter);
+  }
+
+  createGameCharacter(gameCharacter: GameCharacter) {
+    this.gameCharacterService.createGameCharacter(gameCharacter).subscribe (
+      (data: string) => {this.openResponse(data);
+        console.log('création réussie:' + data);
+        },
+      (err: HttpErrorResponse) => {this.openResponse(err.error);
       }
     );
   }
 
-  openResponse(response: string): void {
-    console.log('dans openResponse: ' + this.creationResponse);
+  openResponse(creationResponse: string): void {
     const dialogRef = this.dialog.open(ResponseComponent, {
       width: '250px',
-      data: {creationResponse: response}
+      data: {creationResponse: creationResponse}
     });
     dialogRef.afterClosed().subscribe();
   }
