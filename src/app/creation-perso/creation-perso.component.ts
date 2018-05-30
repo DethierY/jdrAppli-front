@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
 import { CalculationService } from '../calculation.service';
 import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
-import { TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material';
+import { ResponseComponent } from '../response/response.component';
 import { CharacterClass,
          GameCharacter,
          LevelBonus,
@@ -45,15 +46,17 @@ export class CreationPersoComponent implements OnInit {
   reflexSave: number;
   willSave: number;
   rank: string;
-  chosenScore: any;
   draw1: number;
   draw2: number;
   draw3: number;
   draw4: number;
   draw5: number;
   draw6: number;
+  chosenScore: any;
+  creationResponse: string;
 
   constructor(
+    public dialog: MatDialog,
     public userPageComponent: UserPageComponent,
     public gameCharacterService: GameCharacterService,
     public characterClassService: CharacterClassService,
@@ -77,7 +80,20 @@ export class CreationPersoComponent implements OnInit {
   onSubmit(): void {
     this.gameCharacter.user = this.userPageComponent.getUser();
     this.gameCharacter.level = 1;
-    this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe();
+    this.gameCharacterService.createGameCharacter(this.gameCharacter).subscribe(
+      response => { console.log("C'est la réponse: " + response);
+        this.openResponse(response);
+      }
+    );
+  }
+
+  openResponse(response: string): void {
+    console.log('dans openResponse: ' + this.creationResponse);
+    const dialogRef = this.dialog.open(ResponseComponent, {
+      width: '250px',
+      data: {creationResponse: response}
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
   sexChanged(): void {
@@ -152,8 +168,6 @@ export class CreationPersoComponent implements OnInit {
       case 'strength':
         this.gameCharacter.strength = this.setNewScore(this.gameCharacter.strength);
         this.strengthBonus = this.calculationService.setAbilityBonus(this.gameCharacter.strength);
-        console.log('force: ' + this.gameCharacter.strength);
-        console.log('bonus force: ' + this.strengthBonus);
         break;
       case 'dexterity':
         this.gameCharacter.dexterity = this.setNewScore(this.gameCharacter.dexterity);

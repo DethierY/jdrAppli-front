@@ -44,6 +44,17 @@
       </mat-cell>
     </ng-container>
 
+    <!-- Colonne des créateurs des personnages -->
+    <ng-container matColumnDef = "joueur">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <strong>Joueur</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class = 'mobile-label'>Joueur:</span>
+        {{element.user.name}}
+      </mat-cell>
+    </ng-container>
+
     <!-- Colonne de la Note des personnages -->
     <ng-container matColumnDef = "note">
       <mat-header-cell *matHeaderCellDef mat-sort-header>

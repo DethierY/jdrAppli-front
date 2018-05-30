@@ -19,6 +19,7 @@ import { CreationPersoComponent } from './creation-perso/creation-perso.componen
 import { CharacterClassService } from './character-class.service';
 import { RaceService } from './race.service';
 import { CalculationService } from './calculation.service';
+import { ResponseComponent } from './response/response.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CalculationService } from './calculation.service';
     AccueilComponent,
     CharacterListComponent,
     UserPageComponent,
-    CreationPersoComponent
+    CreationPersoComponent,
+    ResponseComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,11 @@ import { CalculationService } from './calculation.service';
     RaceService,
     CalculationService
   ],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    ResponseComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

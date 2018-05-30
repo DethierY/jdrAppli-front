@@ -24,14 +24,14 @@ export class GameCharacterService {
   }
 
   getGameCharacterList(): Observable<GameCharacter[]> {
-    return this.http.get(`${HOST}/list`) as Observable<GameCharacter[]>;
+    return this.http.get(`${HOST}/list`, httpOptions) as Observable<GameCharacter[]>;
   }
 
   getUserGameCharacterList(id): Observable<GameCharacter[]> {
-    return this.http.get(`${HOST}/list/${id}`) as Observable<GameCharacter[]>;
+    return this.http.get(`${HOST}/list/${id}`, httpOptions) as Observable<GameCharacter[]>;
   }
 
-  createGameCharacter(gameCharacter: GameCharacter): Observable<GameCharacter> {
-    return this.http.post(`${HOST}/create`, gameCharacter) as Observable<GameCharacter>;
+  createGameCharacter(gameCharacter: GameCharacter): Observable<string> {
+    return this.http.post(`${HOST}/create`, gameCharacter, httpOptions) as Observable<string>;
   }
 }

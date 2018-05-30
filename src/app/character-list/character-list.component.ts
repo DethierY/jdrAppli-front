@@ -19,7 +19,7 @@ export class CharacterListComponent implements OnInit {
   personnage: string;
   id: number;
 
-  colonnes = ['nom', 'classe', 'niveau', 'note', 'votants'];
+  colonnes = ['nom', 'classe', 'niveau', 'joueur', 'note', 'votants'];
   dataList;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
