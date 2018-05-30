@@ -202,8 +202,8 @@ export class CreationPersoComponent implements OnInit {
         }
         break;
       case 'charism':
-        this.gameCharacter.charism = this.setNewScore(this.gameCharacter.charism);
-        this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charism);
+        this.gameCharacter.charisma = this.setNewScore(this.gameCharacter.charisma);
+        this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charisma);
         break;
       case 'draw1':
         this.draw1 = this.setNewScore(this.draw1);

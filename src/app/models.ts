@@ -46,7 +46,7 @@ export class GameCharacter {
     public constitution: number;
     public intelligence: number;
     public wisdom: number;
-    public charism: number;
+    public charisma: number;
     public endurance: number;
     public wealth: number;
 }
