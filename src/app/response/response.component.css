@@ -1,10 +1,4 @@
-/* div {
-    display: flex;
-} */
-
-.center {
-    /* justify-content: center; */
-    /* align-content: center; */
+button {
     display: block;
     margin: auto;
 }

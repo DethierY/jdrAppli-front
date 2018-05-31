@@ -1,4 +1,4 @@
-<mat-card *ngIf = "gameCharacters">
+<mat-card>
 
   <!-- Affichage du nombre de personnages dans la liste -->
   <p class = 'numberCharacter'>Il y a {{numberCharacters}} {{personnage}}.</p>
@@ -12,7 +12,7 @@
   <mat-table [dataSource]="dataList" matSort>
 
     <!-- Colonne du nom des personnages -->
-    <ng-container matColumnDef = "nom">
+    <ng-container matColumnDef = "characterName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         <strong>Nom</strong>
       </mat-header-cell>
@@ -23,57 +23,57 @@
     </ng-container>
 
     <!-- Colonne de la Classe des personnages -->
-    <ng-container matColumnDef = "classe">
+    <ng-container matColumnDef = "className">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         <strong>Classe</strong>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class = 'mobile-label'>Classe:</span>
-        {{element.characterClass.className}}
+        {{element.className}}
       </mat-cell>
     </ng-container>
 
     <!-- Colonne du Niveau des personnages -->
-    <ng-container matColumnDef = "niveau">
+    <ng-container matColumnDef = "characterLevel">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         <strong>Niveau</strong>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class = 'mobile-label'>Niveau:</span>
-        {{element.level}}
+        {{element.characterLevel}}
       </mat-cell>
     </ng-container>
 
     <!-- Colonne des créateurs des personnages -->
-    <ng-container matColumnDef = "joueur">
+    <ng-container matColumnDef = "userName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         <strong>Joueur</strong>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class = 'mobile-label'>Joueur:</span>
-        {{element.user.name}}
+        {{element.userName}}
       </mat-cell>
     </ng-container>
 
     <!-- Colonne de la Note des personnages -->
-    <ng-container matColumnDef = "note">
+    <ng-container matColumnDef = "score">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         <strong>Note</strong>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class = 'mobile-label'>Note:</span>
-        {{element.appreciation?.averageScore}}
+        {{element.score}}
       </mat-cell>
     </ng-container>
 
     <!-- Colonne du nombre de Votants des personnages -->
-    <ng-container matColumnDef = "votants">
+    <ng-container matColumnDef = "numberOfVoters">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           <strong>Votants</strong>
         </mat-header-cell>
         <mat-cell *matCellDef="let element">
           <span class = 'mobile-label'>Votants:</span>
-          {{element.appreciation?.numberOfVoters}}
+          {{element.numberOfVoters}}
         </mat-cell>
     </ng-container>
 

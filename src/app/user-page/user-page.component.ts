@@ -11,7 +11,7 @@ import { CharacterListComponent } from '../character-list/character-list.compone
 })
 export class UserPageComponent implements OnInit {
 
-  id = 1;
+  idUser = 1;
   user: User;
   userName: string;
   isUserCharacters: boolean;
@@ -25,7 +25,7 @@ export class UserPageComponent implements OnInit {
   ngOnInit() {
     this.isUserCharacters = false;
     console.log('ngOnInit isUserCharacters devient false');
-    this.userService.getUser(this.id).subscribe(
+    this.userService.getUser(this.idUser).subscribe(
       user => this.user = user
     );
   }
@@ -33,7 +33,7 @@ export class UserPageComponent implements OnInit {
   myCharacters() {
     if (!this.isUserCharacters) {
       this.isUserCharacters = true;
-      this.router.navigate(['./list/', this.id], {relativeTo: this.route});
+      this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
     } else {
       this.isUserCharacters = false;
       this.router.navigate(['./list'], {relativeTo: this.route});

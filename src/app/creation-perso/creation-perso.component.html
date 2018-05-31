@@ -1,62 +1,75 @@
-<mat-card *ngIf="gameCharacter">
+<mat-card *ngIf="gameCharacter" class = "container-page">
   <form #postForm="ngForm" (ngSubmit) = "onSubmit()">
 
-    <mat-form-field>
+    <div class = "container-row">
+
+      <mat-form-field>
         <input matInput [(ngModel)]="gameCharacter.characterName"
         placeholder = "Nom"
         name = "name" type = "text"
+        class = "long-input"
         required>
-    </mat-form-field>
+      </mat-form-field>
 
-    <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>
+      <mat-form-field>
+        <mat-select placeholder="Classe"
+                    [formControl]="classControl"
+                    [(ngModel)]="gameCharacter.characterClass"
+                    (ngModelChange)="classChanged()"
+                    class = "long-input"
+                    required>
+          <mat-option *ngFor="let class of characterClasses" [value]="class">
+            {{class.className}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
+      </mat-form-field>
 
-    <p>Age: {{gameCharacter.age}} </p>
+      <p>Niveau: 1</p>
 
-    <mat-form-field>
-      <mat-select placeholder="Sexe"
-                  [formControl]="classControl"
-                  [(ngModel)]="gameCharacter.sex"
-                  (ngModelChange)="sexChanged()"
-                  required>
-        <mat-option *ngFor="let sex of sexes" [value]="sex.value">
-          {{sex.viewValue}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
-    </mat-form-field>
+    </div>
 
-    <p>Taille: {{gameCharacter.height}} {{gameCharacter.height? 'm':''}}</p>
-    <p>Poids: {{gameCharacter.weight}} {{gameCharacter.weight? 'kg':''}}</p>
+    <div>
+      <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>
 
-    <mat-form-field>
-      <mat-select placeholder="Allégeance"
-                  [formControl]="classControl"
-                  [(ngModel)]="gameCharacter.alliegeance"
-                  required>
-        <mat-option *ngFor="let alliegeance of alliegeances" [value]="alliegeance">
-          {{alliegeance}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Sexe"
+                    [formControl]="classControl"
+                    [(ngModel)]="gameCharacter.sex"
+                    (ngModelChange)="sexChanged()"
+                    required>
+          <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+            {{sex.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
+      </mat-form-field>
 
-    <p>Niveau: 1</p>
-    <p>{{rank? 'Rang:':""}} {{rank}} </p>
+      <p>Age: {{gameCharacter.age}} </p>
 
-    <mat-form-field>
-      <mat-select placeholder="Classe"
-                  [formControl]="classControl"
-                  [(ngModel)]="gameCharacter.characterClass"
-                  (ngModelChange)="classChanged()"
-                  required>
-        <mat-option *ngFor="let class of characterClasses" [value]="class">
-          {{class.className}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
-    </mat-form-field>
+      <p>Taille: {{gameCharacter.height}} {{gameCharacter.height? 'm':''}}</p>
+      <p>Poids: {{gameCharacter.weight}} {{gameCharacter.weight? 'kg':''}}</p>
+    
+    </div>
 
-    <p>Classe {{gameCharacter.characterClass?.className}}</p>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Allégeance"
+                    [formControl]="classControl"
+                    [(ngModel)]="gameCharacter.alliegeance"
+                    required>
+          <mat-option *ngFor="let alliegeance of alliegeances" [value]="alliegeance">
+           {{alliegeance}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
+      </mat-form-field>
+
+      <p>{{rank? 'Rang:':""}} {{rank}} </p>
+
+      <p>Pécule: {{gameCharacter.wealth}} {{gameCharacter.wealth? 'po' : ''}}</p>
+
+    </div>
 
     <input (focus)="chooseScore('draw1')"
            [(ngModel)]="draw1" name="draw1"
@@ -131,8 +144,6 @@
     <p>Vigueur: {{fortitudeSave>0? '+':''}}{{fortitudeSave}}</p>
     <P>Réflexe: {{reflexSave>0? '+':''}}{{reflexSave}}</P>
     <p>Volonté: {{willSave>0? '+':''}}{{willSave}}</p>
-
-    <p>Pécule: {{gameCharacter.wealth}}</p>
     
     <button mat-raised-button type = "submit">
       Valider

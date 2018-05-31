@@ -113,6 +113,15 @@ export class Rank {
     public level20: string;
 }
 
+export class TableRow {
+    public characterName: string;
+    public className: string;
+    public characterLevel: number;
+    public userName: string;
+    public score: number;
+    public numberOfVoters: number;
+}
+
 export class User {
     public id?: number;
     public name: string;

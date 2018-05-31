@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { ViewChild } from '@angular/core';
 import { GameCharacterService } from '../game-character.service';
-import { GameCharacter } from '../models';
+import { GameCharacter, TableRow } from '../models';
 import { ActivatedRouteSnapshot } from '@angular/router/src/router_state';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
@@ -13,13 +12,11 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class CharacterListComponent implements OnInit {
 
-  gameCharacter: GameCharacter;
-  gameCharacters = new Array<GameCharacter[]>();
   numberCharacters: number;
   personnage: string;
   id: number;
 
-  colonnes = ['nom', 'classe', 'niveau', 'joueur', 'note', 'votants'];
+  colonnes = ['characterName', 'className', 'characterLevel', 'userName', 'score', 'numberOfVoters'];
   dataList;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,11 +31,14 @@ export class CharacterListComponent implements OnInit {
   ngOnInit() {
     // Obtenir la liste des personnages
     this.route.paramMap.subscribe((params: ParamMap) => {
-      console.log('this.route' + this.route.snapshot);
       this.id = +this.route.snapshot.paramMap.get('id');
+      console.log(0);
       this.gameCharacterService.getCharacterList(this.id).subscribe(
         characters => {
-          this.dataList = new MatTableDataSource(characters);
+          console.log(1);
+          const tableData: TableRow[] = this.configureData(characters);
+          console.log(2);
+          this.dataList = new MatTableDataSource(tableData);
           this.dataList.paginator = this.paginator;
           this.dataList.sort = this.sort;
           if (characters !== null && characters.length > 1 ) {
@@ -57,16 +57,32 @@ export class CharacterListComponent implements OnInit {
   }
 
   // Filtrage de la liste de personnages
-  filterTable(filterValue: string) {
+  private filterTable(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataList.filter = filterValue;
   }
 
-  userCharacters(id) {
-    console.log('dans userCharacters(id) de character-list');
+  private userCharacters(id) {
     this.id = id;
     this.ngOnInit();
+  }
+
+  private configureData (characterList: GameCharacter[]): TableRow[] {
+    const tableData: TableRow[] = new Array<TableRow>();
+    for (const character of characterList) {
+      const tableRow: TableRow = new TableRow();
+      tableRow.characterName = character.characterName;
+      tableRow.className = character.characterClass.className;
+      tableRow.characterLevel = character.level;
+      tableRow.userName = character.user.name;
+      if (character.appreciation !== null) {
+        tableRow.score = character.appreciation.averageScore;
+        tableRow.numberOfVoters = character.appreciation.numberOfVoters;
+      }
+      tableData.push(tableRow);
+    }
+    return tableData;
   }
 
 }

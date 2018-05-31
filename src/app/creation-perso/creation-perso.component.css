@@ -1,0 +1,21 @@
+.container-page {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.container-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+/* .long-input {
+    width: 210px;
+} */
+
+@media(max-width: 600px) {
+    .container-row {
+        flex-flow: column nowrap;
+    }
+
+}
