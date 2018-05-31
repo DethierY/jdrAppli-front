@@ -14,6 +14,8 @@ export class ResponseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('isCreationOK dans popup: ' + this.data.isCreationOK);
+    console.log('creationReponse dans popup: ' + this.data.creationResponse);
   }
 
   closeDialog(): void {

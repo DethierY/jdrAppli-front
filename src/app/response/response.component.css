@@ -1,0 +1,23 @@
+/* div {
+    display: flex;
+} */
+
+.center {
+    /* justify-content: center; */
+    /* align-content: center; */
+    display: block;
+    margin: auto;
+}
+
+p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.black-text {
+    color: black; 
+}
+
+.red-text {
+    color: red;
+}

@@ -84,20 +84,28 @@ export class CreationPersoComponent implements OnInit {
   }
 
   createGameCharacter(gameCharacter: GameCharacter) {
+    let isCreationOK: boolean;
     this.gameCharacterService.createGameCharacter(gameCharacter).subscribe (
-      (data: string) => {this.openResponse(data);
-        console.log('création réussie:' + data);
+      (data: string) => {
+        isCreationOK = true;
+        console.log('isCretaionOk pour création ok: ' + isCreationOK);
+        this.openResponse(data, isCreationOK);
         },
-      (err: HttpErrorResponse) => {this.openResponse(err.error);
+      (err: HttpErrorResponse) => {
+        isCreationOK = false;
+        console.log('isCreationOK pour création NO: ' + isCreationOK);
+        this.openResponse(err.error, isCreationOK);
       }
     );
   }
 
-  openResponse(creationResponse: string): void {
+  openResponse(creationResponse: string, isCreationOK: boolean): void {
     const dialogRef = this.dialog.open(ResponseComponent, {
       width: '250px',
-      data: {creationResponse: creationResponse}
+      data: { creationResponse: creationResponse,
+        isCreationOK: isCreationOK}
     });
+    console.log('isCreationOk dans le openResponse; ' + isCreationOK);
     dialogRef.afterClosed().subscribe();
   }
 

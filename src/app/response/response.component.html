@@ -1,7 +1,10 @@
 <div mat-dialog-content>
-  <p>{{data.creationResponse}}</p>
+  <p [ngClass]=" {
+      'black-text' : data.isCreationOK === true,
+      'red-text' : data.isCreationOK === false
+   } ">{{data.creationResponse}}</p>
 </div>
 <div mat-dialog-action>
-  <button mat-button (click)="closeDialog()">ok</button>
+  <button mat-button (click)="closeDialog()" class = " center ">ok</button>
 </div>
 
