@@ -15,7 +15,7 @@ export class CharacterClassService {
     private router: Router
   ) { }
 
-  getClassNameList(): Observable<CharacterClass[]> {
+  public getClassNameList(): Observable<CharacterClass[]> {
     return this.http.get(`${HOST}/list`) as Observable<CharacterClass[]>;
   }
 }

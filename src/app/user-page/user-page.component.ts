@@ -24,13 +24,13 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit() {
     this.isUserCharacters = false;
-    console.log('ngOnInit isUserCharacters devient false');
     this.userService.getUser(this.idUser).subscribe(
       user => this.user = user
     );
   }
 
-  myCharacters() {
+  // passage entre liste des prsonnages et liste des personnages de l'utilisateur
+  private changeCharacterList(): void {
     if (!this.isUserCharacters) {
       this.isUserCharacters = true;
       this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
@@ -40,16 +40,16 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  getUser(): User {
+  public getUser(): User {
     return this.user;
   }
 
-  disconnection() {
+  private toDisconnect(): void {
     this.user = null;
     this.router.navigate(['../accueil/list'], {relativeTo: this.route});
   }
 
-  toCreate() {
+  private goToCharacterCreationForm(): void {
     this.router.navigate(['./create'], {relativeTo: this.route});
   }
 }

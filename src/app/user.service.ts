@@ -15,7 +15,7 @@ export class UserService {
     private router: Router
   ) { }
 
-  getUser(id): Observable<User> {
+  public getUser(id): Observable<User> {
     return this.http.get(`${HOST}/${id}`) as Observable<User>;
   }
 }

@@ -6,7 +6,7 @@ export class CalculationService {
 
   constructor() { }
 
-  rollingDice(dice: number, sides: number): number {
+  public rollingDice(dice: number, sides: number): number {
     let result = 0;
     for (let i = 0; i < dice; i++) {
       result = result + +(Math.trunc((Math.random() * sides)) + 1).toFixed(0);
@@ -14,7 +14,7 @@ export class CalculationService {
     return result;
   }
 
-  setAbilityBonus(ability: number): number {
+  public setAbilityBonus(ability: number): number {
     let bonus: number;
     if (ability > 11) {
       bonus = +(Math.trunc((ability - 10) / 2)).toFixed(0);
@@ -26,7 +26,7 @@ export class CalculationService {
     return bonus;
   }
 
-  setRank(level: number, characterClass: CharacterClass): string {
+  public setRank(level: number, characterClass: CharacterClass): string {
     let rank: string;
     if (typeof characterClass !== 'undefined') {
       if (characterClass.rank !== null) {
@@ -97,7 +97,7 @@ export class CalculationService {
     return rank;
   }
 
-  setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
+  public setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
     let save = 0;
     if (typeof bonusAbility === 'undefined') {
       save = this.setLevelBonusValue(levelBonus, level);
@@ -107,7 +107,7 @@ export class CalculationService {
     return save;
   }
 
-  setLevelBonusValue(levelBonus: LevelBonus, level: number): number {
+  public setLevelBonusValue(levelBonus: LevelBonus, level: number): number {
     let levelBonusValue = 0;
     switch (level) {
       case 1:

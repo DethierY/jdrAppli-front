@@ -8,7 +8,7 @@
           Mon Compte
         </button>
         <button class = 'toolbarButtons' mat-raised-button
-                (click) = "disconnection()">
+                (click) = "toDisconnect()">
           Déconnexion
         </button>
       </div>
@@ -30,7 +30,7 @@
               mat-raised-button>Mon Compte</button>
       <button class = 'sidenav-element'
               mat-raised-button
-              (click) = "disconnection()">
+              (click) = "toDisconnect()">
               Déconnexion</button>
     </mat-sidenav>
 
@@ -40,11 +40,11 @@
       <!-- Boutons pour lister ses prsonnages et en créer un nouveau -->
       <div class = 'userButtons'>
         <button class = 'userButton' mat-raised-button
-                (click) = "myCharacters()">
+                (click) = "changeCharacterList()">
           {{ isUserCharacters? 'Tous les Personnages' : 'Mes Personnages'}}
         </button>
         <button class = 'userButton' mat-raised-button
-                (click) = "toCreate()">
+                (click) = "goToCharacterCreationForm()">
           Nouveau personnage
         </button>
       </div>

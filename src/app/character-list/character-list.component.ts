@@ -32,12 +32,9 @@ export class CharacterListComponent implements OnInit {
     // Obtenir la liste des personnages
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +this.route.snapshot.paramMap.get('id');
-      console.log(0);
       this.gameCharacterService.getCharacterList(this.id).subscribe(
         characters => {
-          console.log(1);
           const tableData: TableRow[] = this.configureData(characters);
-          console.log(2);
           this.dataList = new MatTableDataSource(tableData);
           this.dataList.paginator = this.paginator;
           this.dataList.sort = this.sort;
@@ -63,11 +60,7 @@ export class CharacterListComponent implements OnInit {
     this.dataList.filter = filterValue;
   }
 
-  private userCharacters(id) {
-    this.id = id;
-    this.ngOnInit();
-  }
-
+  // création du jeu de données pour le tableau
   private configureData (characterList: GameCharacter[]): TableRow[] {
     const tableData: TableRow[] = new Array<TableRow>();
     for (const character of characterList) {

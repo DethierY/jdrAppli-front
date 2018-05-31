@@ -15,7 +15,7 @@ export class RaceService {
     private router: Router
   ) { }
 
-  getRaceList(): Observable<Race[]> {
+  public getRaceList(): Observable<Race[]> {
     return this.http.get(`${HOST}/list`) as Observable<Race[]>;
   }
 }

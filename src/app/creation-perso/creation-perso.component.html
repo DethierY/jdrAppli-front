@@ -71,68 +71,68 @@
 
     </div>
 
-    <input (focus)="chooseScore('draw1')"
+    <input (focus)="chooseRoll('draw1')"
            [(ngModel)]="draw1" name="draw1"
            [ngModelOptions] = "{standalone:true}"
            readonly>
-    <input (focus)="chooseScore('draw2')"
+    <input (focus)="chooseRoll('draw2')"
            [(ngModel)]="draw2" name="draw2"
            [ngModelOptions] = "{standalone:true}"
            readonly>
-    <input (focus)="chooseScore('draw3')"
+    <input (focus)="chooseRoll('draw3')"
            [(ngModel)]="draw3" name="draw3"
            [ngModelOptions] = "{standalone:true}"
            readonly>
-    <input (focus)="chooseScore('draw4')"
+    <input (focus)="chooseRoll('draw4')"
            [(ngModel)]="draw4" name="draw4"
            [ngModelOptions] = "{standalone:true}"
            readonly>
-    <input (focus)="chooseScore('draw5')"
+    <input (focus)="chooseRoll('draw5')"
            [(ngModel)]="draw5" name="draw5"
            [ngModelOptions] = "{standalone:true}"
            readonly>
-    <input (focus)="chooseScore('draw6')"
+    <input (focus)="chooseRoll('draw6')"
            [(ngModel)]="draw6" name="draw6"
            [ngModelOptions] = "{standalone:true}"
            readonly>
     
     <p>Force: </p>
-    <input (focus)="chooseScore('strength')"
+    <input (focus)="chooseRoll('strength')"
            [(ngModel)] = "gameCharacter.strength"
            name="strength"
            readonly
            required>
     <P>Bonus: {{strengthBonus>0? '+':''}}{{strengthBonus}}</P>
     <p>Dextérité: </p>
-    <input (focus)="chooseScore('dexterity')"
+    <input (focus)="chooseRoll('dexterity')"
            [(ngModel)] = "gameCharacter.dexterity"
            name="dexterity"
            readonly
            required>
     <p>Bonus: {{dexterityBonus>0? '+':''}}{{dexterityBonus}}</p>
     <p>Constitution: </p>
-    <input (focus)="chooseScore('constitution')"
+    <input (focus)="chooseRoll('constitution')"
            [(ngModel)] = "gameCharacter.constitution"
            name="constitution"
            readonly
            required>
     <P>Bonus: {{constitutionBonus>0? '+':''}}{{constitutionBonus}}</P>
     <p>Intelligence: </p>
-    <input (focus)="chooseScore('intelligence')"
+    <input (focus)="chooseRoll('intelligence')"
            [(ngModel)] = "gameCharacter.intelligence"
            name="intelligence"
            readonly
            required>
     <P>Bonus: {{intelligenceBonus>0? '+':''}}{{intelligenceBonus}}</P>
     <p>Sagesse: </p>
-    <input (focus)="chooseScore('wisdom')"
+    <input (focus)="chooseRoll('wisdom')"
            [(ngModel)] = "gameCharacter.wisdom"
            name="wisdom"
            readonly
            required>
     <P>Bonus: {{wisdomBonus>0? '+':''}}{{wisdomBonus}}</P>
     <p>Charisme: </p>
-    <input (focus)="chooseScore('charism')"
+    <input (focus)="chooseRoll('charism')"
            [(ngModel)] = "gameCharacter.charisma"
            name="charism"
            readonly

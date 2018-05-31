@@ -77,13 +77,14 @@ export class CreationPersoComponent implements OnInit {
     this.draw6 = this.setAbility();
   }
 
-  onSubmit(): void {
+  // création du personnage
+  private onSubmit(): void {
     this.gameCharacter.user = this.userPageComponent.getUser();
-    this.gameCharacter.level = 1;
     this.createGameCharacter(this.gameCharacter);
   }
 
-  createGameCharacter(gameCharacter: GameCharacter) {
+  // gestion de la réponse de la création de personnage
+  private createGameCharacter(gameCharacter: GameCharacter): void {
     let isCreationOK: boolean;
     this.gameCharacterService.createGameCharacter(gameCharacter).subscribe (
       (data: string) => {
@@ -99,7 +100,8 @@ export class CreationPersoComponent implements OnInit {
     );
   }
 
-  openResponse(creationResponse: string, isCreationOK: boolean): void {
+  // ouverture du popupu de réponse
+  private openResponse(creationResponse: string, isCreationOK: boolean): void {
     const dialogRef = this.dialog.open(ResponseComponent, {
       width: '250px',
       data: { creationResponse: creationResponse,
@@ -109,7 +111,8 @@ export class CreationPersoComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  sexChanged(): void {
+  // recalcule taille et poids après changement du sexe
+  private sexChanged(): void {
     if (typeof this.gameCharacter.sex === 'undefined') {
     } else {
       if (typeof this.gameCharacter.characterClass === 'undefined') {
@@ -121,7 +124,8 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  classChanged(): void {
+  // recalcule des données dépendant de la classe après changement de classe
+  private classChanged(): void {
     if (typeof this.gameCharacter.sex !== 'undefined' && typeof this.gameCharacter.characterClass !== 'undefined') {
       this.setHeight();
       this.setWeight();
@@ -137,18 +141,21 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  setAbility (): number {
+  // caulcul de caractéristique
+  private setAbility (): number {
     return 8 + this.calculationService.rollingDice(1, 10);
   }
 
-  setStartingAge(): void {
+  // détermination de l'âge
+  private setStartingAge(): void {
     this.gameCharacter.age = +(this.gameCharacter.characterClass.startingAge + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.startingAgeModifier.numberOfDice,
       this.gameCharacter.characterClass.startingAgeModifier.numberOfSides
     ));
   }
 
-  setHeight(): void {
+  // calcul de la taille
+  private setHeight(): void {
     this.gameCharacter.height = +(this. gameCharacter.characterClass.race.baseHeight + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.race.heightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.heightModifier.numberOfSides
@@ -158,7 +165,8 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  setWeight(): void {
+  // Calcul du poids
+  private setWeight(): void {
     this.gameCharacter.weight = +(this.gameCharacter.characterClass.race.baseWeight + this.calculationService.rollingDice(
       this.gameCharacter.characterClass.race.weightModifier.numberOfDice,
       this.gameCharacter.characterClass.race.weightModifier.numberOfSides,
@@ -168,7 +176,8 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  setNewScore(score: any): number {
+  // attribuer un nouvelle valeur à une caractéristique
+  private setNewAbilityScore(score: any): number {
     let storedScore: any;
     storedScore = score;
     score = this.chosenScore;
@@ -176,14 +185,15 @@ export class CreationPersoComponent implements OnInit {
     return score;
   }
 
-  chooseScore(value: string): void {
+  // gestion de la répartition des tirages dasn les caractéristques
+  private chooseRoll(value: string): void {
     switch (value) {
       case 'strength':
-        this.gameCharacter.strength = this.setNewScore(this.gameCharacter.strength);
+        this.gameCharacter.strength = this.setNewAbilityScore(this.gameCharacter.strength);
         this.strengthBonus = this.calculationService.setAbilityBonus(this.gameCharacter.strength);
         break;
       case 'dexterity':
-        this.gameCharacter.dexterity = this.setNewScore(this.gameCharacter.dexterity);
+        this.gameCharacter.dexterity = this.setNewAbilityScore(this.gameCharacter.dexterity);
         this.dexterityBonus = this.calculationService.setAbilityBonus(this.gameCharacter.dexterity);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.reflexSave = this.calculationService.setSave(this.gameCharacter.characterClass.reflexSave, 1, this.dexterityBonus);
@@ -192,7 +202,7 @@ export class CreationPersoComponent implements OnInit {
         }
         break;
       case 'constitution':
-        this.gameCharacter.constitution = this.setNewScore(this.gameCharacter.constitution);
+        this.gameCharacter.constitution = this.setNewAbilityScore(this.gameCharacter.constitution);
         this.constitutionBonus = this.calculationService.setAbilityBonus(this.gameCharacter.constitution);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.fortitudeSave = this.calculationService.setSave(this.gameCharacter.characterClass.fortitudeSave, 1, this.constitutionBonus);
@@ -202,11 +212,11 @@ export class CreationPersoComponent implements OnInit {
         this.setStartingEndurance();
         break;
       case 'intelligence':
-        this.gameCharacter.intelligence = this.setNewScore(this.gameCharacter.intelligence);
+        this.gameCharacter.intelligence = this.setNewAbilityScore(this.gameCharacter.intelligence);
         this.intelligenceBonus = this.calculationService.setAbilityBonus(this.gameCharacter.intelligence);
         break;
       case 'wisdom':
-        this.gameCharacter.wisdom = this.setNewScore(this.gameCharacter.wisdom);
+        this.gameCharacter.wisdom = this.setNewAbilityScore(this.gameCharacter.wisdom);
         this.wisdomBonus = this.calculationService.setAbilityBonus(this.gameCharacter.wisdom);
         if (typeof this.gameCharacter.characterClass !== 'undefined') {
           this.willSave = this.calculationService.setSave(this.gameCharacter.characterClass.willSave, 1, this.wisdomBonus);
@@ -215,31 +225,32 @@ export class CreationPersoComponent implements OnInit {
         }
         break;
       case 'charism':
-        this.gameCharacter.charisma = this.setNewScore(this.gameCharacter.charisma);
+        this.gameCharacter.charisma = this.setNewAbilityScore(this.gameCharacter.charisma);
         this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charisma);
         break;
       case 'draw1':
-        this.draw1 = this.setNewScore(this.draw1);
+        this.draw1 = this.setNewAbilityScore(this.draw1);
         break;
       case 'draw2':
-        this.draw2 = this.setNewScore(this.draw2);
+        this.draw2 = this.setNewAbilityScore(this.draw2);
         break;
       case 'draw3':
-        this.draw3 = this.setNewScore(this.draw3);
+        this.draw3 = this.setNewAbilityScore(this.draw3);
         break;
       case 'draw4':
-        this.draw4 = this.setNewScore(this.draw4);
+        this.draw4 = this.setNewAbilityScore(this.draw4);
         break;
       case 'draw5':
-        this.draw5 = this.setNewScore(this.draw5);
+        this.draw5 = this.setNewAbilityScore(this.draw5);
         break;
       case 'draw6':
-        this.draw6 = this.setNewScore(this.draw6);
+        this.draw6 = this.setNewAbilityScore(this.draw6);
         break;
     }
   }
 
-  setStartingEndurance() {
+  // Calcul endurance
+  private setStartingEndurance(): void {
     if (typeof this.gameCharacter.characterClass === 'undefined') {
       this.gameCharacter.endurance = this.constitutionBonus;
     } else {
@@ -249,7 +260,8 @@ export class CreationPersoComponent implements OnInit {
     }
   }
 
-  setStartingWealth() {
+  // Calcul du pécule
+  private setStartingWealth(): void {
     if (this.gameCharacter.characterClass.wealthModifier !== null) {
         const bonusWealth = this.calculationService.rollingDice(
           this.gameCharacter.characterClass.wealthModifier.numberOfDice,

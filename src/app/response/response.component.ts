@@ -18,7 +18,7 @@ export class ResponseComponent implements OnInit {
     console.log('creationReponse dans popup: ' + this.data.creationResponse);
   }
 
-  closeDialog(): void {
+  private closeDialog(): void {
     this.dialogRef.close();
   }
 
