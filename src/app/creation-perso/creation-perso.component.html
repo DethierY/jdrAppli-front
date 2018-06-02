@@ -91,31 +91,31 @@
       <p class = "center"><strong>TIRAGES A REPARTIR</strong></p>
       <div class = "row-container">
         <div class = "roll-duo">
-          <input (focus) = "chooseRoll('draw1')"
+          <input (click) = "chooseRoll('draw1')"
                  [(ngModel)] = "draw1" name="draw1"
                  [ngModelOptions] = "{standalone:true}"
                  class = "input-roll"
                  readonly>
-          <input (focus) = "chooseRoll('draw2')"
+          <input (click) = "chooseRoll('draw2')"
                  [(ngModel)] = "draw2" name="draw2"
                  [ngModelOptions] = "{standalone:true}"
                  class = "input-roll"
                  readonly>
         </div>
         <div class = "roll-duo">
-          <input (focus)="chooseRoll('draw3')"
+          <input (click)="chooseRoll('draw3')"
                  [(ngModel)] = "draw3" name="draw3"
                  [ngModelOptions] = "{standalone:true}"
                  class="input-roll"
                  readonly>
-          <input (focus) = "chooseRoll('draw4')"
+          <input (click) = "chooseRoll('draw4')"
                  [(ngModel)] = "draw4" name="draw4"
                  [ngModelOptions] = "{standalone:true}"
                  class="input-roll"
                  readonly>
         </div>
         <div class = "roll-duo">
-          <input (focus) = "chooseRoll('draw5')"
+          <input (click) = "chooseRoll('draw5')"
                  [(ngModel)] = "draw5" name="draw5"
                  [ngModelOptions] = "{standalone:true}"
                  class="input-roll"
@@ -138,7 +138,7 @@
         <div class = "ability-duo">
           <div class = "ability">
             <p><strong>Force: </strong></p>
-            <input (focus) = "chooseRoll('strength')"
+            <input (click) = "chooseRoll('strength')"
                    [(ngModel)] = "gameCharacter.strength"
                    name="strength"
                    class = "input-roll"
@@ -149,7 +149,7 @@
 
           <div class = "ability">
             <p><strong>Dextérité: </strong></p>
-            <input (focus) = "chooseRoll('dexterity')"
+            <input (click) = "chooseRoll('dexterity')"
                    [(ngModel)] = "gameCharacter.dexterity"
                    name = "dexterity"
                    class = "input-roll"
@@ -162,7 +162,7 @@
         <div class = "ability-duo">
           <div class = "ability">
             <p><strong>Constitution: </strong></p>
-            <input (focus) = "chooseRoll('constitution')"
+            <input (click) = "chooseRoll('constitution')"
                    [(ngModel)] = "gameCharacter.constitution"
                    name = "constitution"
                    class = "input-roll"
@@ -173,7 +173,7 @@
 
           <div class = "ability">
             <p><strong>Intelligence: </strong></p>
-            <input (focus) = "chooseRoll('intelligence')"
+            <input (click) = "chooseRoll('intelligence')"
                    [(ngModel)] = "gameCharacter.intelligence"
                    name = "intelligence"
                    class = "input-roll"
@@ -186,7 +186,7 @@
         <div class = "ability-duo">
           <div class = "ability">
             <p><strong>Sagesse: </strong></p>
-            <input (focus) = "chooseRoll('wisdom')"
+            <input (click) = "chooseRoll('wisdom')"
                    [(ngModel)] = "gameCharacter.wisdom"
                    name="wisdom"
                    class = "input-roll"
@@ -197,7 +197,7 @@
         
           <div class = "ability">
             <p><strong>Charisme: </strong></p>
-            <input (focus) = "chooseRoll('charism')"
+            <input (click) = "chooseRoll('charism')"
                    [(ngModel)] = "gameCharacter.charisma"
                    name="charism"
                    class = "input-roll"
