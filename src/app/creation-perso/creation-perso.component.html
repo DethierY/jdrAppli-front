@@ -1,155 +1,219 @@
-<mat-card *ngIf="gameCharacter" class = "container-page">
+<mat-card *ngIf="gameCharacter" class = "page-container">
   <form #postForm="ngForm" (ngSubmit) = "onSubmit()">
 
-    <div class = "container-row">
+    <div class = "bordered">  
+      <div class = "row-container ">
+        <mat-form-field class = "long-input">
+          <input matInput [(ngModel)]="gameCharacter.characterName"
+                 placeholder = "Nom"
+                 name = "name" type = "text"
+                 required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [(ngModel)]="gameCharacter.characterName"
-        placeholder = "Nom"
-        name = "name" type = "text"
-        class = "long-input"
-        required>
-      </mat-form-field>
+        <mat-form-field class = "long-input">
+          <mat-select placeholder="Classe"
+                      [formControl]="classControl"
+                      [(ngModel)]="gameCharacter.characterClass"
+                      (ngModelChange)="classChanged()"
+                      required>
+            <mat-option *ngFor="let class of characterClasses" [value]="class">
+              {{class.className}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Classe"
-                    [formControl]="classControl"
-                    [(ngModel)]="gameCharacter.characterClass"
-                    (ngModelChange)="classChanged()"
-                    class = "long-input"
-                    required>
-          <mat-option *ngFor="let class of characterClasses" [value]="class">
-            {{class.className}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="classControl.hasError('required')">Choisissez une classe</mat-error>
-      </mat-form-field>
+        <p><strong>Niveau: </strong>1</p>
+      </div>
 
-      <p>Niveau: 1</p>
+      <div class = "row-container">
+        <div class = "line-wrapper">
+          <p><strong>Race: </strong>{{gameCharacter.characterClass?.race.raceName}}</p>
+          <p><strong>Age: </strong>{{gameCharacter.age}} </p>
+        </div>
 
+        <mat-form-field>
+          <mat-select placeholder="Sexe"
+                      [formControl]="classControl"
+                      [(ngModel)]="gameCharacter.sex"
+                      (ngModelChange)="sexChanged()"
+                      required>
+            <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+              {{sex.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
+        </mat-form-field>
+
+        <div class = "line-wrapper">
+          <p><strong>Taille: </strong>{{gameCharacter.height}} {{gameCharacter.height? 'm':''}}</p>
+          <p><strong>Poids: </strong>{{gameCharacter.weight}} {{gameCharacter.weight? 'kg':''}}</p>
+        </div>
+      </div>
+
+      <div class = "row-container">
+        <mat-form-field>
+          <mat-select placeholder="Allégeance"
+                      [formControl]="classControl"
+                      [(ngModel)]="gameCharacter.alliegeance"
+                      required>
+            <mat-option *ngFor="let alliegeance of alliegeances" [value]="alliegeance">
+             {{alliegeance}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
+        </mat-form-field>
+
+        <div class = "line-wrapper">
+          <p><strong>Rang: </strong> {{rank? rank: 'aucun'}} </p>
+          <p class = "center"><strong>Pécule: </strong>
+            {{gameCharacter.wealth}} {{gameCharacter.wealth? 'po' : ''}}
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <p>Race: {{gameCharacter.characterClass?.race.raceName}}</p>
-
-      <mat-form-field>
-        <mat-select placeholder="Sexe"
-                    [formControl]="classControl"
-                    [(ngModel)]="gameCharacter.sex"
-                    (ngModelChange)="sexChanged()"
-                    required>
-          <mat-option *ngFor="let sex of sexes" [value]="sex.value">
-            {{sex.viewValue}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="classControl.hasError('required')">Choisissez un sexe</mat-error>
-      </mat-form-field>
-
-      <p>Age: {{gameCharacter.age}} </p>
-
-      <p>Taille: {{gameCharacter.height}} {{gameCharacter.height? 'm':''}}</p>
-      <p>Poids: {{gameCharacter.weight}} {{gameCharacter.weight? 'kg':''}}</p>
-    
+    <div class = "row-container">
+      <div class = "bordered">
+        <p class = "center"><strong>Endurance: </strong>{{gameCharacter.endurance}}</p>
+      </div>
+      <div class = "saves-wrapper bordered">
+        <p class = "Title"><strong>JETS DE SAUVEGARDE</strong></p>
+        <div class = "saves-score-wrapper">
+          <p><strong>Vigueur: </strong>{{fortitudeSave>0? '+':''}}{{fortitudeSave}}</p>
+          <P><strong>Réflexe: </strong>{{reflexSave>0? '+':''}}{{reflexSave}}</P>
+          <p><strong>Volonté: </strong>{{willSave>0? '+':''}}{{willSave}}</p>
+        </div>
+      </div> 
     </div>
 
-    <div>
-      <mat-form-field>
-        <mat-select placeholder="Allégeance"
-                    [formControl]="classControl"
-                    [(ngModel)]="gameCharacter.alliegeance"
-                    required>
-          <mat-option *ngFor="let alliegeance of alliegeances" [value]="alliegeance">
-           {{alliegeance}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="classControl.hasError('required')">Choisissez une allégeance</mat-error>
-      </mat-form-field>
-
-      <p>{{rank? 'Rang:':""}} {{rank}} </p>
-
-      <p>Pécule: {{gameCharacter.wealth}} {{gameCharacter.wealth? 'po' : ''}}</p>
-
+    <div class = "roll-container bordered">
+      <p class = "center"><strong>TIRAGES A REPARTIR</strong></p>
+      <div class = "row-container">
+        <div class = "roll-duo">
+          <input (focus) = "chooseRoll('draw1')"
+                 [(ngModel)] = "draw1" name="draw1"
+                 [ngModelOptions] = "{standalone:true}"
+                 class = "input-roll"
+                 readonly>
+          <input (focus) = "chooseRoll('draw2')"
+                 [(ngModel)] = "draw2" name="draw2"
+                 [ngModelOptions] = "{standalone:true}"
+                 class = "input-roll"
+                 readonly>
+        </div>
+        <div class = "roll-duo">
+          <input (focus)="chooseRoll('draw3')"
+                 [(ngModel)] = "draw3" name="draw3"
+                 [ngModelOptions] = "{standalone:true}"
+                 class="input-roll"
+                 readonly>
+          <input (focus) = "chooseRoll('draw4')"
+                 [(ngModel)] = "draw4" name="draw4"
+                 [ngModelOptions] = "{standalone:true}"
+                 class="input-roll"
+                 readonly>
+        </div>
+        <div class = "roll-duo">
+          <input (focus) = "chooseRoll('draw5')"
+                 [(ngModel)] = "draw5" name="draw5"
+                 [ngModelOptions] = "{standalone:true}"
+                 class="input-roll"
+                 readonly>
+          <input (focus) = "chooseRoll('draw6')"
+                 [(ngModel)] = "draw6" name="draw6"
+                 [ngModelOptions] = "{standalone:true}"
+                 class="input-roll"
+                 readonly>
+        </div>
+      </div>
     </div>
 
-    <input (focus)="chooseRoll('draw1')"
-           [(ngModel)]="draw1" name="draw1"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
-    <input (focus)="chooseRoll('draw2')"
-           [(ngModel)]="draw2" name="draw2"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
-    <input (focus)="chooseRoll('draw3')"
-           [(ngModel)]="draw3" name="draw3"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
-    <input (focus)="chooseRoll('draw4')"
-           [(ngModel)]="draw4" name="draw4"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
-    <input (focus)="chooseRoll('draw5')"
-           [(ngModel)]="draw5" name="draw5"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
-    <input (focus)="chooseRoll('draw6')"
-           [(ngModel)]="draw6" name="draw6"
-           [ngModelOptions] = "{standalone:true}"
-           readonly>
+    <div class = "roll-coontainer bordered">
+        
+      <p class = "center"><strong>TIRAGES A REPARTIR</strong></p>
+
+      <div class = "row-container">
+
+        <div class = "ability-duo">
+          <div class = "ability">
+            <p><strong>Force: </strong></p>
+            <input (focus) = "chooseRoll('strength')"
+                   [(ngModel)] = "gameCharacter.strength"
+                   name="strength"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <p>Bonus: {{strengthBonus>0? '+':''}}{{strengthBonus}}</p>
+          </div>
+
+          <div class = "ability">
+            <p><strong>Dextérité: </strong></p>
+            <input (focus) = "chooseRoll('dexterity')"
+                   [(ngModel)] = "gameCharacter.dexterity"
+                   name = "dexterity"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <p>Bonus: {{dexterityBonus>0? '+':''}}{{dexterityBonus}}</p>
+          </div>
+        </div>
+
+        <div class = "ability-duo">
+          <div class = "ability">
+            <p><strong>Constitution: </strong></p>
+            <input (focus) = "chooseRoll('constitution')"
+                   [(ngModel)] = "gameCharacter.constitution"
+                   name = "constitution"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <P>Bonus: {{constitutionBonus>0? '+':''}}{{constitutionBonus}}</P>
+          </div>
+
+          <div class = "ability">
+            <p><strong>Intelligence: </strong></p>
+            <input (focus) = "chooseRoll('intelligence')"
+                   [(ngModel)] = "gameCharacter.intelligence"
+                   name = "intelligence"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <P>Bonus: {{intelligenceBonus>0? '+':''}}{{intelligenceBonus}}</P>
+          </div>
+        </div>
+
+        <div class = "ability-duo">
+          <div class = "ability">
+            <p><strong>Sagesse: </strong></p>
+            <input (focus) = "chooseRoll('wisdom')"
+                   [(ngModel)] = "gameCharacter.wisdom"
+                   name="wisdom"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <P>Bonus: {{wisdomBonus>0? '+':''}}{{wisdomBonus}}</P>
+          </div>
+        
+          <div class = "ability">
+            <p><strong>Charisme: </strong></p>
+            <input (focus) = "chooseRoll('charism')"
+                   [(ngModel)] = "gameCharacter.charisma"
+                   name="charism"
+                   class = "input-roll"
+                   readonly
+                   required/>
+            <P>Bonus: {{charismBonus>0? '+':''}}{{charismBonus}}</P>
+          </div>
+        </div>
+      </div>  
+    </div>
     
-    <p>Force: </p>
-    <input (focus)="chooseRoll('strength')"
-           [(ngModel)] = "gameCharacter.strength"
-           name="strength"
-           readonly
-           required>
-    <P>Bonus: {{strengthBonus>0? '+':''}}{{strengthBonus}}</P>
-    <p>Dextérité: </p>
-    <input (focus)="chooseRoll('dexterity')"
-           [(ngModel)] = "gameCharacter.dexterity"
-           name="dexterity"
-           readonly
-           required>
-    <p>Bonus: {{dexterityBonus>0? '+':''}}{{dexterityBonus}}</p>
-    <p>Constitution: </p>
-    <input (focus)="chooseRoll('constitution')"
-           [(ngModel)] = "gameCharacter.constitution"
-           name="constitution"
-           readonly
-           required>
-    <P>Bonus: {{constitutionBonus>0? '+':''}}{{constitutionBonus}}</P>
-    <p>Intelligence: </p>
-    <input (focus)="chooseRoll('intelligence')"
-           [(ngModel)] = "gameCharacter.intelligence"
-           name="intelligence"
-           readonly
-           required>
-    <P>Bonus: {{intelligenceBonus>0? '+':''}}{{intelligenceBonus}}</P>
-    <p>Sagesse: </p>
-    <input (focus)="chooseRoll('wisdom')"
-           [(ngModel)] = "gameCharacter.wisdom"
-           name="wisdom"
-           readonly
-           required>
-    <P>Bonus: {{wisdomBonus>0? '+':''}}{{wisdomBonus}}</P>
-    <p>Charisme: </p>
-    <input (focus)="chooseRoll('charism')"
-           [(ngModel)] = "gameCharacter.charisma"
-           name="charism"
-           readonly
-           required>
-    <P>Bonus: {{charismBonus>0? '+':''}}{{charismBonus}}</P>
-
-    <p>Endurance: {{gameCharacter.endurance}}</p>
-
-    <p>Vigueur: {{fortitudeSave>0? '+':''}}{{fortitudeSave}}</p>
-    <P>Réflexe: {{reflexSave>0? '+':''}}{{reflexSave}}</P>
-    <p>Volonté: {{willSave>0? '+':''}}{{willSave}}</p>
-    
-    <button mat-raised-button type = "submit">
-      Valider
-    </button>
-
-    <p>{{gameCharacter | json}}</p>
+    <div class ="button-wrapper">
+      <button mat-raised-button type = "submit" class = "centered-button">
+        Valider
+      </button>
+    </div>
 
   </form>
 </mat-card>

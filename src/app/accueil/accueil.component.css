@@ -8,6 +8,14 @@
     right: 0;
 }
 
+/* INPOUT */
+input {
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-bottom: 0px;
+    border-right: 0px;
+}
+
 /* TOOLBAR */
 
 .spacer {

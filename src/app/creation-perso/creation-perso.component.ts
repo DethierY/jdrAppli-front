@@ -89,12 +89,12 @@ export class CreationPersoComponent implements OnInit {
     this.gameCharacterService.createGameCharacter(gameCharacter).subscribe (
       (data: string) => {
         isCreationOK = true;
-        console.log('isCretaionOk pour création ok: ' + isCreationOK);
         this.openResponse(data, isCreationOK);
         },
       (err: HttpErrorResponse) => {
         isCreationOK = false;
         console.log('isCreationOK pour création NO: ' + isCreationOK);
+        console.log('messsage dans création NO: ' + err.error);
         this.openResponse(err.error, isCreationOK);
       }
     );
