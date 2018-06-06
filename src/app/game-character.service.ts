@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { GameCharacter } from './models';
 
 const httpOptions = {headers: new HttpHeaders ({'Content-Type': 'application/json'})};
-const postHttpOptions = {headers: new HttpHeaders ({'Content-Type': 'application/json'}), responseType: 'text' as 'text'};
+const postHttpOptions = {
+  headers: new HttpHeaders ({'Content-Type': 'application/json'}),
+  responseType: 'text' as 'text'
+};
 const HOST = 'http://localhost:8080/character';
 
 @Injectable()
@@ -28,7 +31,7 @@ export class GameCharacterService {
     return this.http.get(`${HOST}/list`, httpOptions) as Observable<GameCharacter[]>;
   }
 
-  public getUserGameCharacterList(id): Observable<GameCharacter[]> {
+  public getUserGameCharacterList(id: number): Observable<GameCharacter[]> {
     return this.http.get(`${HOST}/list/${id}`, httpOptions) as Observable<GameCharacter[]>;
   }
 

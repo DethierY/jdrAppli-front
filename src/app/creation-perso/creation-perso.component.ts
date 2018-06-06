@@ -93,8 +93,6 @@ export class CreationPersoComponent implements OnInit {
         },
       (err: HttpErrorResponse) => {
         isCreationOK = false;
-        console.log('isCreationOK pour création NO: ' + isCreationOK);
-        console.log('messsage dans création NO: ' + err.error);
         this.openResponse(err.error, isCreationOK);
       }
     );
@@ -107,7 +105,6 @@ export class CreationPersoComponent implements OnInit {
       data: { creationResponse: creationResponse,
         isCreationOK: isCreationOK}
     });
-    console.log('isCreationOk dans le openResponse; ' + isCreationOK);
     dialogRef.afterClosed().subscribe();
   }
 
