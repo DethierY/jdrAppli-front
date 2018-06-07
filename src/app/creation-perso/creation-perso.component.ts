@@ -97,7 +97,12 @@ export class CreationPersoComponent implements OnInit {
         },
       (err: HttpErrorResponse) => {
         isCreationOK = false;
-        this.openResponse(err.error, isCreationOK);
+        console.log(JSON.stringify(err));
+        if (err.statusText === 'Unknown Error') {
+          this.openResponse('Sauvegarde impossible: pas de connexion!', isCreationOK);
+        } else {
+          this.openResponse(err.error, isCreationOK);
+        }
       }
     );
   }
