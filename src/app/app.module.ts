@@ -8,18 +8,20 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './/routing.module';
 
-import { GameCharacterService } from './game-character.service';
-
-import { AppComponent } from './app.component';
-import { AccueilComponent } from './accueil/accueil.component';
-import { CharacterListComponent } from './character-list/character-list.component';
-import { UserPageComponent } from './user-page/user-page.component';
-import { UserService } from './user.service';
-import { CreationPersoComponent } from './creation-perso/creation-perso.component';
-import { CharacterClassService } from './character-class.service';
-import { RaceService } from './race.service';
 import { CalculationService } from './calculation.service';
+import { CharacterClassService } from './character-class.service';
+import { GameCharacterService } from './game-character.service';
+import { RaceService } from './race.service';
+import { UserService } from './user.service';
+
+import { AccueilComponent } from './accueil/accueil.component';
+import { AlertDataComponent } from './alert-data/alert-data.component';
+import { AppComponent } from './app.component';
+import { CharacterListComponent } from './character-list/character-list.component';
+import { CreationPersoComponent } from './creation-perso/creation-perso.component';
 import { ResponseComponent } from './response/response.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { CommunicationService } from './communication.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ResponseComponent } from './response/response.component';
     CharacterListComponent,
     UserPageComponent,
     CreationPersoComponent,
-    ResponseComponent
+    ResponseComponent,
+    AlertDataComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +48,12 @@ import { ResponseComponent } from './response/response.component';
     UserService,
     CharacterClassService,
     RaceService,
-    CalculationService
+    CalculationService,
+    CommunicationService
   ],
   entryComponents: [
-    ResponseComponent
+    ResponseComponent,
+    AlertDataComponent
   ],
   bootstrap: [
     AppComponent

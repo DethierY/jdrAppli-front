@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameCharacterService } from '../game-character.service';
 import { CharacterClassService } from '../character-class.service';
 import { CalculationService } from '../calculation.service';
+import { CommunicationService } from '../communication.service';
 import { RaceService } from '../race.service';
 import { UserPageComponent } from '../user-page/user-page.component';
 import { MatDialog } from '@angular/material';
@@ -26,9 +27,6 @@ export class CreationPersoComponent implements OnInit {
 
   gameCharacter: GameCharacter = new GameCharacter();
   classControl = new FormControl('', [Validators.required]);
-  characterClass: CharacterClass;
-  characterClasses: CharacterClass[];
-  race: Race;
   sexes = [
     {value: 'femme', viewValue: 'femme'},
     {value: 'homme', viewValue: 'homme'}
@@ -43,6 +41,9 @@ export class CreationPersoComponent implements OnInit {
   intelligenceBonus = 0;
   wisdomBonus = 0;
   charismBonus = 0;
+  characterClass: CharacterClass;
+  characterClasses: CharacterClass[];
+  race: Race;
   fortitudeSave: number;
   reflexSave: number;
   willSave: number;
@@ -61,13 +62,15 @@ export class CreationPersoComponent implements OnInit {
     public gameCharacterService: GameCharacterService,
     public characterClassService: CharacterClassService,
     public raceService: RaceService,
-    public calculationService: CalculationService
+    public calculationService: CalculationService,
+    public communicationService: CommunicationService
   ) { }
 
   ngOnInit(): void {
     this.characterClassService.getClassNameList().subscribe(
       classList => this.characterClasses = classList
     );
+    this.communicationService.setIsWarning(true);
     this.gameCharacter.level = 1;
     this.draw1 = this.setAbility();
     this.draw2 = this.setAbility();
@@ -89,6 +92,7 @@ export class CreationPersoComponent implements OnInit {
     this.gameCharacterService.createGameCharacter(gameCharacter).subscribe (
       (data: string) => {
         isCreationOK = true;
+        this.communicationService.setIsWarning(false);
         this.openResponse(data, isCreationOK);
         },
       (err: HttpErrorResponse) => {
@@ -98,7 +102,7 @@ export class CreationPersoComponent implements OnInit {
     );
   }
 
-  // ouverture du popupu de réponse
+  // ouverture du popup de réponse
   private openResponse(creationResponse: string, isCreationOK: boolean): void {
     const dialogRef = this.dialog.open(ResponseComponent, {
       width: '250px',

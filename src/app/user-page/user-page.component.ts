@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { UserService } from '../user.service';
+import { CommunicationService } from '../communication.service';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { CharacterListComponent } from '../character-list/character-list.component';
+import { AlertDataComponent } from '../alert-data/alert-data.component';
 
 @Component({
   selector: 'app-user-page',
@@ -18,8 +21,10 @@ export class UserPageComponent implements OnInit {
 
   constructor(
     public userService: UserService,
+    public communicationService: CommunicationService,
     private route: ActivatedRoute,
     private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -29,27 +34,43 @@ export class UserPageComponent implements OnInit {
     );
   }
 
+   // ouverture du popupu de réponse
+   private openWarning( ): void {
+    const dialogRef = this.dialog.open(AlertDataComponent, {
+      width: '250px',
+    });
+    dialogRef.afterClosed().subscribe();
+  }
+
   // passage entre liste des prsonnages et liste des personnages de l'utilisateur
   private changeCharacterList(): void {
-    if (!this.isUserCharacters) {
-      this.isUserCharacters = true;
-      this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
+    if (this.communicationService.getIsWarning() === true) {
+      this.openWarning();
     } else {
-      this.isUserCharacters = false;
-      this.router.navigate(['./list'], {relativeTo: this.route});
+      if (!this.isUserCharacters) {
+        this.isUserCharacters = true;
+        this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
+      } else {
+        this.isUserCharacters = false;
+        this.router.navigate(['./list'], {relativeTo: this.route});
+      }
     }
   }
 
+  // obtenir l'utilisateur connecté
   public getUser(): User {
     return this.user;
   }
 
+  // déconnexion du compte
   private toDisconnect(): void {
     this.user = null;
     this.router.navigate(['../accueil/list'], {relativeTo: this.route});
   }
 
+  // affichage du formulaire de création de personnage
   private goToCharacterCreationForm(): void {
     this.router.navigate(['./create'], {relativeTo: this.route});
   }
+
 }
