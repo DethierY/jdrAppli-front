@@ -42,24 +42,22 @@ export class UserPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  // passage entre liste des prsonnages et liste des personnages de l'utilisateur
-  private changeCharacterList(): void {
-    if (this.communicationService.getIsWarning() === true) {
-      this.openWarning();
-    } else {
-      if (!this.isUserCharacters) {
-        this.isUserCharacters = true;
-        this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
-      } else {
-        this.isUserCharacters = false;
-        this.router.navigate(['./list'], {relativeTo: this.route});
-      }
-    }
-  }
-
   // obtenir l'utilisateur connecté
   public getUser(): User {
     return this.user;
+  }
+
+  // passage entre liste des prsonnages et liste des personnages de l'utilisateur
+  private changeCharacterList(): void {
+    if (!this.isUserCharacters) {
+      this.isUserCharacters = true;
+      this.checkIfDataHaveToBeSaved(['./list/', this.idUser]);
+      // this.router.navigate(['./list/', this.idUser], {relativeTo: this.route});
+    } else {
+      this.isUserCharacters = false;
+      this.checkIfDataHaveToBeSaved(['./list/']);
+      // this.router.navigate(['./list'], {relativeTo: this.route});
+    }
   }
 
   // déconnexion du compte
@@ -70,7 +68,16 @@ export class UserPageComponent implements OnInit {
 
   // affichage du formulaire de création de personnage
   private goToCharacterCreationForm(): void {
-    this.router.navigate(['./create'], {relativeTo: this.route});
+    this.checkIfDataHaveToBeSaved(['./create']);
+    // this.router.navigate(['./create'], {relativeTo: this.route});
+  }
+
+  private checkIfDataHaveToBeSaved(targetUrl: (string | number)[]) {
+    if (this.communicationService.getIsWarning() === true ) {
+      this.openWarning();
+    } else {
+      this.router.navigate(targetUrl, {relativeTo: this.route});
+    }
   }
 
 }
