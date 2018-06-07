@@ -35,11 +35,17 @@ export class UserPageComponent implements OnInit {
   }
 
    // ouverture du popupu de réponse
-   private openWarning( ): void {
+   private openWarning( targetUrl: (string | number)[] ): void {
     const dialogRef = this.dialog.open(AlertDataComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(
+      () => {
+        if (this.communicationService.getIsWarning() === false) {
+          this.router.navigate(targetUrl, {relativeTo: this.route});
+        }
+      }
+    );
   }
 
   // obtenir l'utilisateur connecté
@@ -74,7 +80,7 @@ export class UserPageComponent implements OnInit {
 
   private checkIfDataHaveToBeSaved(targetUrl: (string | number)[]) {
     if (this.communicationService.getIsWarning() === true ) {
-      this.openWarning();
+      this.openWarning(targetUrl);
     } else {
       this.router.navigate(targetUrl, {relativeTo: this.route});
     }
