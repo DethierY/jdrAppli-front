@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material';
 import { ResponseComponent } from '../response/response.component';
 import { CharacterClass,
          GameCharacter,
-         LevelBonus,
+         BonusProgression,
          Race } from '../models';
 import { NgForm,
          FormsModule,

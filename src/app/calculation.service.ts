@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LevelBonus, CharacterClass } from './models';
+import { Bonus, BonusProgression, CharacterClass } from './models';
 
 @Injectable()
 export class CalculationService {
@@ -97,77 +97,17 @@ export class CalculationService {
     return rank;
   }
 
-  public setSave(levelBonus: LevelBonus, level: number, bonusAbility: number): number {
+  public setSave(bonusProgression: BonusProgression, level: number, bonusAbility: number): number {
     let save = 0;
     if (typeof bonusAbility === 'undefined') {
-      save = this.setLevelBonusValue(levelBonus, level);
+      save = this.setLevelBonusValue(bonusProgression, level);
     } else {
-      save = this.setLevelBonusValue(levelBonus, level) + bonusAbility;
+      save = this.setLevelBonusValue(bonusProgression, level) + bonusAbility;
     }
     return save;
   }
 
-  public setLevelBonusValue(levelBonus: LevelBonus, level: number): number {
-    let levelBonusValue = 0;
-    switch (level) {
-      case 1:
-        levelBonusValue = levelBonus.level1;
-        break;
-      case 2:
-        levelBonusValue = levelBonus.level2;
-        break;
-      case 3:
-        levelBonusValue = levelBonus.level3;
-        break;
-      case 4:
-        levelBonusValue = levelBonus.level4;
-        break;
-      case 5:
-        levelBonusValue = levelBonus.level5;
-        break;
-      case 6:
-        levelBonusValue = levelBonus.level6;
-        break;
-      case 7:
-        levelBonusValue = levelBonus.level7;
-        break;
-      case 8:
-        levelBonusValue = levelBonus.level8;
-        break;
-      case 9:
-        levelBonusValue = levelBonus.level9;
-        break;
-      case 10:
-        levelBonusValue = levelBonus.level10;
-        break;
-      case 11:
-        levelBonusValue = levelBonus.level11;
-        break;
-      case 12:
-        levelBonusValue = levelBonus.level12;
-        break;
-      case 13:
-        levelBonusValue = levelBonus.level13;
-        break;
-      case 14:
-        levelBonusValue = levelBonus.level14;
-        break;
-      case 15:
-        levelBonusValue = levelBonus.level15;
-        break;
-      case 16:
-        levelBonusValue = levelBonus.level16;
-        break;
-      case 17:
-        levelBonusValue = levelBonus.level17;
-        break;
-      case 18:
-        levelBonusValue = levelBonus.level18;
-        break;
-      case 19:
-        levelBonusValue = levelBonus.level19;
-        break;
-    }
-    return levelBonusValue;
+  public setLevelBonusValue(bonusProgression: BonusProgression, level: number): number {
+    return bonusProgression.progressionValue[level - 1].bonusValue;
   }
 }
