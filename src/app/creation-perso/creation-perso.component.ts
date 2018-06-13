@@ -40,7 +40,7 @@ export class CreationPersoComponent implements OnInit {
   constitutionBonus = 0;
   intelligenceBonus = 0;
   wisdomBonus = 0;
-  charismBonus = 0;
+  charismaBonus = 0;
   characterClass: CharacterClass;
   characterClasses: CharacterClass[];
   race: Race;
@@ -232,7 +232,7 @@ export class CreationPersoComponent implements OnInit {
         break;
       case 'charism':
         this.gameCharacter.charisma = this.setNewAbilityScore(this.gameCharacter.charisma);
-        this.charismBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charisma);
+        this.charismaBonus = this.calculationService.setAbilityBonus(this.gameCharacter.charisma);
         break;
       case 'draw1':
         this.draw1 = this.setNewAbilityScore(this.draw1);
