@@ -99,5 +99,7 @@
         flex-flow: column nowrap;
         margin-top: 5px;
     }
-    
+    .title {
+        text-align: center;
+    }
 }
